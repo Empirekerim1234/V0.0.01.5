@@ -103,6 +103,10 @@ public:
 class Player : public HareketEdebilenler {
 private:
 	BaseStat playerStat;
+	int xp = 0;
+	int level = 0;
+	int nextLevelExp;
+	int LevelExpTablosu[20];
 public:
 	int GetPlayerCan();
 	int GetPLayerMaxCan();
@@ -114,6 +118,58 @@ public:
 	void SetPLayerSatas(int _can,int _maxCan,int _hasar);
 	void PlayerHasarAl(int _hasar);
 	void PlayerSaldir(Dusman* dusman);
+	void LevelTablosuDoldur(){
+		LevelExpTablosu[0] = 0;
+		LevelExpTablosu[1] = 10;
+		LevelExpTablosu[2] = LevelExpTablosu[1] * 2;
+		LevelExpTablosu[3] = LevelExpTablosu[2] * 2;
+		LevelExpTablosu[4] = LevelExpTablosu[3] * 2;
+		LevelExpTablosu[5] = LevelExpTablosu[4] * 2;
+		LevelExpTablosu[6] = LevelExpTablosu[5] * 2;
+		LevelExpTablosu[7] = LevelExpTablosu[6] * 2;
+		LevelExpTablosu[8] = LevelExpTablosu[7] * 2;
+		LevelExpTablosu[9] = LevelExpTablosu[8] * 2;
+		LevelExpTablosu[10] = LevelExpTablosu[9] * 2;
+		LevelExpTablosu[11] = LevelExpTablosu[10] * 2;
+		LevelExpTablosu[12] = LevelExpTablosu[11] * 2;
+		LevelExpTablosu[13] = LevelExpTablosu[12] * 2;
+		LevelExpTablosu[14] = LevelExpTablosu[13] * 2;
+		LevelExpTablosu[15] = LevelExpTablosu[14] * 2;
+		LevelExpTablosu[16] = LevelExpTablosu[15] * 2;
+		LevelExpTablosu[17] = LevelExpTablosu[16] * 2;
+		LevelExpTablosu[18] = LevelExpTablosu[17] * 2;
+		LevelExpTablosu[19] = LevelExpTablosu[18] * 2;
+	}
+	bool LevelAtlayabilirMi()
+	{
+		if (level < 20)
+			return true;
+		return false;
+	}
+	void LevelAdd()
+	{ 
+		if (LevelAtlayabilirMi()) 
+			level++; 
+	}
+	int GetLevel()
+	{return level;}
+	void AddExp(int _xp)
+	{xp += _xp;}
+	void LevelYonetici(){
+		if (LevelAtlayabilirMi())
+		{
+			if (xp >= LevelExpTablosu[level+1]){
+			do
+			{
+
+				xp -= LevelExpTablosu[level];
+				LevelAdd();
+				if (xp <= LevelExpTablosu[level])
+					break;
+				else break;
+			} while (true);
+		}
+	}
 };
 struct Varliklar {
 	Player player;
