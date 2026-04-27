@@ -1,5 +1,4 @@
-﻿  Input.cpp
-  Kamera.cpp
+﻿  Kamera.cpp
   Oyun.cpp
   Render.cpp
 C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Render.cpp(47,70): warning C4305: '=': truncation from 'int' to '_Ty'
@@ -27,7 +26,6 @@ C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(141,34): warning C426
   Update.cpp
   Varliklar.cpp
 C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Varliklar.cpp(74,9): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-  Veriler.cpp
   WorldSetup.cpp
 C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\WorldSetup.cpp(53,74): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
   Generating Code...

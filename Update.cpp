@@ -43,18 +43,23 @@ void PlayerKonumGuncelleVeUygula(Varliklar& varliklar, InputKonumlari&inputKarar
 {HareketiDene(varliklar.player, varliklar,oyunHaritaVerisi,inputKarar);}
 void DusmanKonumGuncelleVeUygula(Varliklar& varliklar,OyunHaritaVeri& oyunHaritaVerisi)//sonrasında sınıfa al ve iki işi ayır
 {
+	static int sayac = 0;
 	int playerX = varliklar.player.GetKonumX();
 	int playerY = varliklar.player.GetKonumY();
+	int toplamHasar=0;
 	for (int i = 0; i < varliklar.dusmanListesi.size(); i++)
 	{
 		bool saldirabilirMi = false;
 		InputKonumlari inputKarar = InputYok;
 		varliklar.dusmanListesi[i]->DusmanKararMerkezi(playerY,playerX,inputKarar,saldirabilirMi);
 		HareketiDene(*varliklar.dusmanListesi[i], varliklar, oyunHaritaVerisi, inputKarar);
-		int hasar = varliklar.dusmanListesi[i]->DusmanSaldirisi();
-		if (inputKarar == Saldir)
-			varliklar.player.PlayerHasarAl(hasar);
+		if (saldirabilirMi)
+			toplamHasar += varliklar.dusmanListesi[i]->DusmanSaldirisi();
 	}
+	if (sayac >= 60)
+		varliklar.player.PlayerHasarAl(toplamHasar);
+	else
+		sayac++;
 }
 void PlayerKonumGuncellemeKarari(InputKonumlari&inputKarar, Varliklar& varliklar,OyunHaritaVeri& oyunHaritaVerisi)
 {
