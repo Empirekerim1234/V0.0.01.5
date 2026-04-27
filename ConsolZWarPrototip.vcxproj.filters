@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Veriler">
+      <UniqueIdentifier>{b8f615c6-2f1f-4a7c-beeb-99f7af046e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Varliklar">
+      <UniqueIdentifier>{303c0936-c28b-4aa4-bcb9-c7691a0f6270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Update">
+      <UniqueIdentifier>{53a3ae15-6fdb-448d-b448-d53b4ff57ff8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Render">
+      <UniqueIdentifier>{b25bfabc-27a4-43e5-82ec-162622db4005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Oyun">
+      <UniqueIdentifier>{e5505683-a28a-44d6-b44f-aa3588f91bc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{2d7e8023-47d3-4206-b57f-f4dba4c634a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\YardimciFonksiyonlar">
+      <UniqueIdentifier>{27f8ffde-110a-4188-84eb-fb95f71e3db8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\WorldSetup">
+      <UniqueIdentifier>{62f54b07-4a27-424d-82a1-bf4c028358b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Kamera">
+      <UniqueIdentifier>{c7b4a730-4de6-4c25-9845-39f688ad4903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ui">
+      <UniqueIdentifier>{6ee91ed0-95e0-42db-8faf-f6d39b41a715}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="YardimciFonksiyonlar.cpp">
+      <Filter>Source Files\YardimciFonksiyonlar</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldSetup.cpp">
+      <Filter>Source Files\WorldSetup</Filter>
+    </ClCompile>
+    <ClCompile Include="Oyun.cpp">
+      <Filter>Source Files\Oyun</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Source Files\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Update.cpp">
+      <Filter>Source Files\Update</Filter>
+    </ClCompile>
+    <ClCompile Include="Varliklar.cpp">
+      <Filter>Source Files\Varliklar</Filter>
+    </ClCompile>
+    <ClCompile Include="Veriler.cpp">
+      <Filter>Source Files\Veriler</Filter>
+    </ClCompile>
+    <ClCompile Include="Kamera.cpp">
+      <Filter>Source Files\Kamera</Filter>
+    </ClCompile>
+    <ClCompile Include="Ui.cpp">
+      <Filter>Source Files\Ui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Input.h">
+      <Filter>Source Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Oyun.h">
+      <Filter>Source Files\Oyun</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Source Files\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Update.h">
+      <Filter>Source Files\Update</Filter>
+    </ClInclude>
+    <ClInclude Include="Varliklar.h">
+      <Filter>Source Files\Varliklar</Filter>
+    </ClInclude>
+    <ClInclude Include="Veriler.h">
+      <Filter>Source Files\Veriler</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldSetup.h">
+      <Filter>Source Files\WorldSetup</Filter>
+    </ClInclude>
+    <ClInclude Include="YardimciFonksiyonlar.h">
+      <Filter>Source Files\YardimciFonksiyonlar</Filter>
+    </ClInclude>
+    <ClInclude Include="Kamera.h">
+      <Filter>Source Files\Kamera</Filter>
+    </ClInclude>
+    <ClInclude Include="Ui.h">
+      <Filter>Source Files\Ui</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
