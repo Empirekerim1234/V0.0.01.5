@@ -70,50 +70,9 @@ public:
 		SetGorusMesafesi(30);
 		SetSaldiriMenzili(5);
 	}
-	void PlayerHizala(int playerY,int playerX,InputKonumlari& inputKarari){
-		int mesafeX = playerX - GetKonumX();
-		int mesafeY = playerY - GetKonumY();
-		if (mesafeX < 0)
-			mesafeX *= -1;
-		if (mesafeY < 0)
-			mesafeY *= -1;
-		if (mesafeX < mesafeY){
-			if (GetKonumX() > playerX) inputKarari = SolaGit;
-			else if (GetKonumX() < playerX) inputKarari = SagaGit;
-			else inputKarari = InputYok;
-		}
-		else{
-			if (GetKonumY() > playerY) inputKarari = YukariGit;
-			else if (GetKonumY() < playerY) inputKarari = AsagiyaGit;
-			else inputKarari = InputYok;
-		}
-	}
-	int DusmanSaldirisi()override
-	{
-		return GetHasar();
-	}
-	void DusmanKararMerkezi(int playerY, int playerX,InputKonumlari& inputKarari,bool& saldirabilirMi) override {
-		int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
-		if (mesafe <= GetGorusMesafesi())
-			SetGorusMesafesindeMi(true);
-		else
-			SetGorusMesafesindeMi(false);
-		if (mesafe <= GetSaldiriMenzili())
-			SetSaldiriMenzilindeMi(true);
-		else
-			SetSaldiriMenzilindeMi(false);
-		if (GetSaldiriMenzilindeMi())
-		{
-			if (playerY == GetKonumY() || playerX == GetKonumX())
-				saldirabilirMi = true;
-			else
-				PlayerHizala(playerY,playerX,inputKarari);
-		}
-		else if (GetPlayeriGorduMu())
-			PlayereGit(playerY,playerX,inputKarari);
-		else
-			RandomDusmanHaraketYonetici(inputKarari);
-	}
+	void PlayerHizala(int playerY, int playerX, InputKonumlari& inputKarari);
+	int DusmanSaldirisi()override;
+	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi)override;
 };
 class SavasciDusman : public Dusman{
 private:
@@ -125,25 +84,8 @@ public:
 		SetGorusMesafesi(40);
 		SetSaldiriMenzili(1);
 	}
-	int DusmanSaldirisi()override
-	{return GetHasar();}
-	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari,bool& saldirabilirMi) override {
-		int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
-		if (mesafe <= GetGorusMesafesi())
-			SetGorusMesafesindeMi(true);
-		else
-			SetGorusMesafesindeMi(false);
-		if (mesafe <= GetSaldiriMenzili())
-			SetSaldiriMenzilindeMi(true);
-		else
-			SetSaldiriMenzilindeMi(false);
-		if (GetSaldiriMenzilindeMi())
-			saldirabilirMi = true;
-		else if (GetPlayeriGorduMu())
-			PlayereGit(playerY, playerX, inputKarari);
-		else
-			RandomDusmanHaraketYonetici(inputKarari);
-	}
+	int DusmanSaldirisi()override;
+	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) override;
 };
 class StandartDusman : public Dusman{
 private:
@@ -155,25 +97,8 @@ public:
 		SetGorusMesafesi(10);
 		SetSaldiriMenzili(1);
 	}
-	int DusmanSaldirisi()override
-	{return GetHasar();}
-	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) override {
-		int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
-		if (mesafe <= GetGorusMesafesi())
-			SetGorusMesafesindeMi(true);
-		else
-			SetGorusMesafesindeMi(false);
-		if (mesafe <= GetSaldiriMenzili())
-			SetSaldiriMenzilindeMi(true);
-		else
-			SetSaldiriMenzilindeMi(false);
-		if (GetSaldiriMenzilindeMi())
-			saldirabilirMi = true;
-		else if (GetPlayeriGorduMu())
-			PlayereGit(playerY, playerX, inputKarari);
-		else
-			RandomDusmanHaraketYonetici(inputKarari);
-	}
+	int DusmanSaldirisi()override;
+	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) override;
 };
 class Player : public HareketEdebilenler {
 private:
@@ -187,14 +112,8 @@ public:
 	void SetPlayerHasar(int _hasar);
 	BaseStat GetPlayerSatas();
 	void SetPLayerSatas(int _can,int _maxCan,int _hasar);
-	void PlayerHasarAl(int _hasar)
-	{
-		SetPLayerCan(GetPlayerCan() - _hasar);
-	}
-	void PlayerSaldir(Dusman* dusman)
-	{
-		dusman->SetCan(dusman->GetCan() - GetPlayerHasar());
-	}
+	void PlayerHasarAl(int _hasar);
+	void PlayerSaldir(Dusman* dusman);
 };
 struct Varliklar {
 	Player player;

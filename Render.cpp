@@ -16,7 +16,8 @@ void EkranaBas(const int y, const int x, const string& txt) {
 void oyunEkranaPlayerVeDusmanEkle(vector<vector<char>>& harita, Varliklar& varliklar) {
 	for (int i = 0; i < varliklar.dusmanListesi.size(); i++)
 	{
-		harita[varliklar.dusmanListesi[i]->GetKonumY()][varliklar.dusmanListesi[i]->GetKonumX()] = varliklar.dusmanListesi[i]->GetSembol();
+		if (varliklar.dusmanListesi[i]->GetYasiyormu())
+			harita[varliklar.dusmanListesi[i]->GetKonumY()][varliklar.dusmanListesi[i]->GetKonumX()] = varliklar.dusmanListesi[i]->GetSembol();
 	}
 	harita[varliklar.player.GetKonumY()][varliklar.player.GetKonumX()] = varliklar.player.GetSembol();
 }

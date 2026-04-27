@@ -2,6 +2,7 @@
 #include "Veriler.h"
 #include "Varliklar.h"
 #include "Input.h"
+#include <vector>
 #include <iostream>
 #include "YardimciFonksiyonlar.h"
 
@@ -10,26 +11,21 @@ bool HucreGeceliMi(int hedefY,int hedefX,OyunHaritaVeri& oyunHaritaVerisi){
 	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Agac)return false;
 	return true;
 }
-bool KonumGecerliMi(int hedefY, int hedefX, HareketEdebilenler& hareketEdecekObje,Varliklar& tumVarliklar,OyunHaritaVeri& oyunHaritaVerisi)
-{
+bool KonumGecerliMi(int hedefY, int hedefX, HareketEdebilenler& hareketEdecekObje,Varliklar& tumVarliklar,OyunHaritaVeri& oyunHaritaVerisi){
 	if (oyunHaritaVerisi.genislik <= hedefX||oyunHaritaVerisi.yukseklik <= hedefY)	return false;
 	if (hedefX < 0 || hedefY < 0) return false;
 	if (&hareketEdecekObje != &tumVarliklar.player) 
 	{if (tumVarliklar.player.GetKonumY() == hedefY && tumVarliklar.player.GetKonumX() == hedefX) return false;}
-	for (int i = 0; i < tumVarliklar.dusmanListesi.size(); i++)
-	{
-		if (&hareketEdecekObje != tumVarliklar.dusmanListesi[i]) {
-			if (tumVarliklar.dusmanListesi[i]->GetKonumY() == hedefY && tumVarliklar.dusmanListesi[i]->GetKonumX() == hedefX) return false;
-		}
+	for (int i = 0; i < tumVarliklar.dusmanListesi.size(); i++)	{
+		if (&hareketEdecekObje != tumVarliklar.dusmanListesi[i])
+		{if (tumVarliklar.dusmanListesi[i]->GetKonumY() == hedefY && tumVarliklar.dusmanListesi[i]->GetKonumX() == hedefX) return false;}
 	}
 	if (!HucreGeceliMi(hedefY, hedefX, oyunHaritaVerisi)) return false;
 	return true;
 }
-void HareketiDene(HareketEdebilenler& hareketEdecekObje,Varliklar& tumVarliklar,OyunHaritaVeri& oyunHaritaVerisi,InputKonumlari& inputKarar)
-{
+void HareketiDene(HareketEdebilenler& hareketEdecekObje,Varliklar& tumVarliklar,OyunHaritaVeri& oyunHaritaVerisi,InputKonumlari& inputKarar){
 	int hedefY = hareketEdecekObje.GetKonumY();
 	int hedefX = hareketEdecekObje.GetKonumX();
-
 	if (inputKarar == YukariGit) hedefY--;
 	else if (inputKarar == AsagiyaGit) hedefY++;
 	else if (inputKarar == SolaGit) hedefX--;
@@ -40,61 +36,62 @@ void HareketiDene(HareketEdebilenler& hareketEdecekObje,Varliklar& tumVarliklar,
 }
 void PlayerKonumGuncelleVeUygula(Varliklar& varliklar, InputKonumlari&inputKarar,OyunHaritaVeri& oyunHaritaVerisi)
 {HareketiDene(varliklar.player, varliklar,oyunHaritaVerisi,inputKarar);}
-void DusmanKonumGuncelleVeUygula(Varliklar& varliklar,OyunHaritaVeri& oyunHaritaVerisi)//sonrasında sınıfa al ve iki işi ayır
-{
-	static int sayac = 0;
+void YasayanDusmanlaricinKarar(Varliklar& varliklar,int& toplamHasar,OyunHaritaVeri& oyunHaritaVerisi){
 	int playerX = varliklar.player.GetKonumX();
 	int playerY = varliklar.player.GetKonumY();
-	int toplamHasar=0;
 	for (int i = 0; i < varliklar.dusmanListesi.size(); i++){
-		bool saldirabilirMi = false;
-		InputKonumlari inputKarar = InputYok;
-		varliklar.dusmanListesi[i]->DusmanKararMerkezi(playerY,playerX,inputKarar,saldirabilirMi);
-		HareketiDene(*varliklar.dusmanListesi[i], varliklar, oyunHaritaVerisi, inputKarar);
-		if (saldirabilirMi)	toplamHasar += varliklar.dusmanListesi[i]->DusmanSaldirisi();
+		if (varliklar.dusmanListesi[i]->GetYasiyormu()) {
+			bool saldirabilirMi = false;
+			InputKonumlari inputKarar = InputYok;
+			varliklar.dusmanListesi[i]->DusmanKararMerkezi(playerY, playerX, inputKarar, saldirabilirMi);
+			HareketiDene(*varliklar.dusmanListesi[i], varliklar, oyunHaritaVerisi, inputKarar);
+			if (saldirabilirMi)	toplamHasar += varliklar.dusmanListesi[i]->DusmanSaldirisi();
+		}
 	}
-	if (sayac >= 60){
-		varliklar.player.PlayerHasarAl(toplamHasar);
+}
+void DusmanSaldiriKarari(int& sayac,Player&player,int toplamHasar){
+	if (sayac >= 60) {
+		player.PlayerHasarAl(toplamHasar);
 		sayac = 0;
 	}
 	else sayac++;
 }
-void PlayerKonumGuncellemeKarari(InputKonumlari&inputKarar, Varliklar& varliklar,OyunHaritaVeri& oyunHaritaVerisi){
-	if (inputKarar == SagaGit||inputKarar == SolaGit || inputKarar == YukariGit||inputKarar ==AsagiyaGit)
-		PlayerKonumGuncelleVeUygula(varliklar, inputKarar,oyunHaritaVerisi);
-	if (inputKarar == Saldir)
-	{
-		for (int i = 0; i < varliklar.dusmanListesi.size(); i++)
-		{
-			if (varliklar.player.GetKonumX() == varliklar.dusmanListesi[i]->GetKonumX() && varliklar.player.GetKonumY() == varliklar.dusmanListesi[i]->GetKonumY() + 1)
+void DusmanUpdate(Varliklar& varliklar,OyunHaritaVeri& oyunHaritaVerisi)/*sonrasında sınıfa al ve iki işi ayır*/{
+	static int sayac = 0;
+	int toplamHasar=0;
+	YasayanDusmanlaricinKarar(varliklar,toplamHasar,oyunHaritaVerisi);
+	DusmanSaldiriKarari(sayac,varliklar.player,toplamHasar);
+}
+void PLayerSaldiriKari(Varliklar& varliklar) {
+	int playerX = varliklar.player.GetKonumX();
+	int playerY = varliklar.player.GetKonumY();
+	for (int i = 0; i < varliklar.dusmanListesi.size(); i++) {
+		if (varliklar.dusmanListesi[i]->GetYasiyormu()) {
+			if (playerX == varliklar.dusmanListesi[i]->GetKonumX() && playerY == varliklar.dusmanListesi[i]->GetKonumY() + 1)
 				varliklar.player.PlayerSaldir(varliklar.dusmanListesi[i]);
-			else if (varliklar.player.GetKonumX() == varliklar.dusmanListesi[i]->GetKonumX() + 1 && varliklar.player.GetKonumY() == varliklar.dusmanListesi[i]->GetKonumY())
+			else if (playerX == varliklar.dusmanListesi[i]->GetKonumX() + 1 && playerY == varliklar.dusmanListesi[i]->GetKonumY())
 				varliklar.player.PlayerSaldir(varliklar.dusmanListesi[i]);
-			else if (varliklar.player.GetKonumX() == varliklar.dusmanListesi[i]->GetKonumX() && varliklar.player.GetKonumY() == varliklar.dusmanListesi[i]->GetKonumY() - 1)
+			else if (playerX == varliklar.dusmanListesi[i]->GetKonumX() && playerY == varliklar.dusmanListesi[i]->GetKonumY() - 1)
 				varliklar.player.PlayerSaldir(varliklar.dusmanListesi[i]);
-			else if (varliklar.player.GetKonumX() == varliklar.dusmanListesi[i]->GetKonumX() - 1 && varliklar.player.GetKonumY() == varliklar.dusmanListesi[i]->GetKonumY())
+			else if (playerX == varliklar.dusmanListesi[i]->GetKonumX() - 1 && playerY == varliklar.dusmanListesi[i]->GetKonumY())
 				varliklar.player.PlayerSaldir(varliklar.dusmanListesi[i]);
 			if (varliklar.dusmanListesi[i]->GetCan() <= 0)
 				varliklar.dusmanListesi[i]->SetYasiyorMu(false);
 		}
 	}
 }
-void OluDusmanlariListedenSil(Varliklar& varlikalr,int index)
-{
-	delete varlikalr.dusmanListesi[index];
+void PlayerUpdate(InputKonumlari&inputKarar, Varliklar& varliklar,OyunHaritaVeri& oyunHaritaVerisi){
+	if (inputKarar == SagaGit||inputKarar == SolaGit || inputKarar == YukariGit||inputKarar ==AsagiyaGit)
+		PlayerKonumGuncelleVeUygula(varliklar, inputKarar,oyunHaritaVerisi);
+	if (inputKarar == Saldir) 
+		PLayerSaldiriKari(varliklar);
 }
 void Update(Varliklar& varliklar, OyunDurumlari& oyunDurum,OyunHaritaVeri& oyunHaritaVerisi) {
 	InputKonumlari inputKarar = InputYok;
 	OyunDurumunaGoreInputOku(oyunDurum,inputKarar);
 	if (varliklar.player.GetPlayerCan() <= 0) oyunDurum = kapant;
 	if (oyunDurum == devamet) {
-		PlayerKonumGuncellemeKarari(inputKarar, varliklar,oyunHaritaVerisi);
-		for (int i = 0; i < varliklar.dusmanListesi.size(); i++)
-		{
-			bool yansiyorMu = varliklar.dusmanListesi[i]->GetYasiyormu();
-			if (!yansiyorMu)
-				OluDusmanlariListedenSil(varliklar, i);
-		}
-		DusmanKonumGuncelleVeUygula(varliklar,oyunHaritaVerisi);//sonrasında sınıfa al ve iki işi ayır
+		PlayerUpdate(inputKarar, varliklar,oyunHaritaVerisi);
+		DusmanUpdate(varliklar,oyunHaritaVerisi);//sonrasında sınıfa al ve iki işi ayır
 	}
 }
