@@ -66,7 +66,7 @@ public:
 	MenzilliDusman(){
 		SetMaxCan(50);
 		SetCan(50);
-		SetHasar(1);
+		SetHasar(3);
 		SetGorusMesafesi(30);
 		SetSaldiriMenzili(5);
 	}
@@ -121,7 +121,7 @@ public:
 	SavasciDusman()	{
 		SetMaxCan(150);
 		SetCan(150);
-		SetHasar(2);
+		SetHasar(5);
 		SetGorusMesafesi(40);
 		SetSaldiriMenzili(1);
 	}
@@ -151,7 +151,7 @@ public:
 	StandartDusman(){
 		SetMaxCan(100);
 		SetCan(100);
-		SetHasar(1);
+		SetHasar(4);
 		SetGorusMesafesi(10);
 		SetSaldiriMenzili(1);
 	}
@@ -190,6 +190,10 @@ public:
 	void PlayerHasarAl(int _hasar)
 	{
 		SetPLayerCan(GetPlayerCan() - _hasar);
+	}
+	void PlayerSaldir(Dusman* dusman)
+	{
+		dusman->SetCan(dusman->GetCan() - GetPlayerHasar());
 	}
 };
 struct Varliklar {
