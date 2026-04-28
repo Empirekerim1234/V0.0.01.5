@@ -14,11 +14,17 @@ bool HucreGeceliMi(int hedefY,int hedefX,OyunHaritaVeri& oyunHaritaVerisi){
 bool KonumGecerliMi(int hedefY, int hedefX, HareketEdebilenler& hareketEdecekObje,Varliklar& tumVarliklar,OyunHaritaVeri& oyunHaritaVerisi){
 	if (oyunHaritaVerisi.genislik <= hedefX||oyunHaritaVerisi.yukseklik <= hedefY)	return false;
 	if (hedefX < 0 || hedefY < 0) return false;
-	if (&hareketEdecekObje != &tumVarliklar.player) 
-	{if (tumVarliklar.player.GetKonumY() == hedefY && tumVarliklar.player.GetKonumX() == hedefX) return false;}
+	if (&hareketEdecekObje != &tumVarliklar.player) {
+		if (tumVarliklar.player.GetKonumY() == hedefY && tumVarliklar.player.GetKonumX() == hedefX) 
+			return false;
+	}
 	for (int i = 0; i < tumVarliklar.dusmanListesi.size(); i++)	{
-		if (&hareketEdecekObje != tumVarliklar.dusmanListesi[i])
-		{if (tumVarliklar.dusmanListesi[i]->GetKonumY() == hedefY && tumVarliklar.dusmanListesi[i]->GetKonumX() == hedefX) return false;}
+		if (tumVarliklar.dusmanListesi[i]->GetYasiyormu())	{
+			if (&hareketEdecekObje != tumVarliklar.dusmanListesi[i]){
+				if (tumVarliklar.dusmanListesi[i]->GetKonumY() == hedefY && tumVarliklar.dusmanListesi[i]->GetKonumX() == hedefX)
+					return false;
+			}
+		}
 	}
 	if (!HucreGeceliMi(hedefY, hedefX, oyunHaritaVerisi)) return false;
 	return true;
@@ -68,24 +74,40 @@ void PLayerDusmanOldurDuyse(Varliklar& varliklar,int index){
 		varliklar.player.GiveXp(varliklar.dusmanListesi[index]->GetGiveExp());
 	}
 }
-void PLayerSaldiracakDusmanKontrol(int playerX,int playerY,Varliklar& varliklar,int index)
+bool PLayerSaldiracakDusmanKontrol(int playerX,int playerY,Varliklar& varliklar,int index)
 {
 	if (playerX == varliklar.dusmanListesi[index]->GetKonumX() && playerY == varliklar.dusmanListesi[index]->GetKonumY() + 1)
+	{
 		varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);
+		return true;
+	}
 	else if (playerX == varliklar.dusmanListesi[index]->GetKonumX() + 1 && playerY == varliklar.dusmanListesi[index]->GetKonumY())
+	{
 		varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);
+		return true;
+	}
 	else if (playerX == varliklar.dusmanListesi[index]->GetKonumX() && playerY == varliklar.dusmanListesi[index]->GetKonumY() - 1)
+	{
 		varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);
+		return true;
+	}
 	else if (playerX == varliklar.dusmanListesi[index]->GetKonumX() - 1 && playerY == varliklar.dusmanListesi[index]->GetKonumY())
+	{
 		varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);
+		return true;
+	}
+	return false;
 }
 void PLayerSaldiriKari(Varliklar& varliklar) {
 	int playerX = varliklar.player.GetKonumX();
 	int playerY = varliklar.player.GetKonumY();
 	for (int i = 0; i < varliklar.dusmanListesi.size(); i++) {
 		if (varliklar.dusmanListesi[i]->GetYasiyormu()) {
-			PLayerSaldiracakDusmanKontrol(playerX,playerY,varliklar,i);
-			PLayerDusmanOldurDuyse(varliklar,i);
+			if (PLayerSaldiracakDusmanKontrol(playerX, playerY, varliklar, i))
+			{
+				PLayerDusmanOldurDuyse(varliklar, i);
+				break;
+			}
 		}
 	}
 }
@@ -95,8 +117,7 @@ void PlayerUpdate(InputKonumlari&inputKarar, Varliklar& varliklar,OyunHaritaVeri
 		PlayerKonumGuncelleVeUygula(varliklar, inputKarar,oyunHaritaVerisi);
 	if (inputKarar == Saldir) 
 		PLayerSaldiriKari(varliklar);
-	if (sayac >= 480)
-	{
+	if (sayac >= 480){
 		int regen = varliklar.player.GetPlayerRegenCan();
 		varliklar.player.PlayerRegenCan(regen);
 		sayac = 0;

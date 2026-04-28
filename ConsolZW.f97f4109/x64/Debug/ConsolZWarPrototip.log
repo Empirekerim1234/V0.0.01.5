@@ -1,17 +1,2 @@
-﻿  Ui.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(10,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(17,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(24,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(32,23): warning C4309: 'initializing': truncation of constant value
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(62,27): warning C4309: 'initializing': truncation of constant value
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(83,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(101,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(105,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(109,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(110,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(111,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(135,24): warning C4309: 'initializing': truncation of constant value
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(143,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(144,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(152,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  Update.cpp
   ConsolZWarPrototip.vcxproj -> C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\x64\Debug\ConsolZWarPrototip.exe

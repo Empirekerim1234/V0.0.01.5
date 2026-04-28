@@ -167,6 +167,22 @@ void Dusman::SetHasar(int _hasar)
 {
 	Stat.Hasar = _hasar;
 }
+void  Dusman::SetPlayerGiveExp(int _givExp)
+{
+	playerGiveExp = _givExp;
+}
+void  Dusman::SetRegenCan(int x)
+{
+	Stat.RegenCan = x;
+}
+int  Dusman::GetRegenCan()
+{
+	return Stat.RegenCan;
+}
+int  Dusman::GetGiveExp()
+{
+	return playerGiveExp;
+}
 int Player::GetPlayerCan()
 {
 	return playerStat.Can;
@@ -209,6 +225,111 @@ void Player::PlayerSaldir(Dusman* dusman)
 {
 	dusman->SetCan(dusman->GetCan() - GetPlayerHasar());
 }
+Player::Player()
+{
+	LevelTablosuDoldur();
+	SetPLayerSatas(100, 100, 10);
+}
+void Player::LevelTablosuDoldur() {
+	LevelExpTablosu[0] = 0;
+	LevelExpTablosu[1] = 10;
+	LevelExpTablosu[2] = LevelExpTablosu[1] * 2;
+	LevelExpTablosu[3] = LevelExpTablosu[2] * 2;
+	LevelExpTablosu[4] = LevelExpTablosu[3] * 2;
+	LevelExpTablosu[5] = LevelExpTablosu[4] * 2;
+	LevelExpTablosu[6] = LevelExpTablosu[5] * 2;
+	LevelExpTablosu[7] = LevelExpTablosu[6] * 2;
+	LevelExpTablosu[8] = LevelExpTablosu[7] * 2;
+	LevelExpTablosu[9] = LevelExpTablosu[8] * 2;
+	LevelExpTablosu[10] = LevelExpTablosu[9] * 2;
+	LevelExpTablosu[11] = LevelExpTablosu[10] * 2;
+	LevelExpTablosu[12] = LevelExpTablosu[11] * 2;
+	LevelExpTablosu[13] = LevelExpTablosu[12] * 2;
+	LevelExpTablosu[14] = LevelExpTablosu[13] * 2;
+	LevelExpTablosu[15] = LevelExpTablosu[14] * 2;
+	LevelExpTablosu[16] = LevelExpTablosu[15] * 2;
+	LevelExpTablosu[17] = LevelExpTablosu[16] * 2;
+	LevelExpTablosu[18] = LevelExpTablosu[17] * 2;
+	LevelExpTablosu[19] = LevelExpTablosu[18] * 2;
+}
+int Player::GetLevelTablosuEleman(int i)
+{
+	return LevelExpTablosu[i];
+}
+bool Player::LevelAtlayabilirMi()
+{
+	if (level < 19)
+		return true;
+	return false;
+}
+void Player::AddMaxCan()
+{
+	Player::playerStat.MaxCan += 10;
+}
+void Player::AddCan()
+{
+	playerStat.Can += 10;
+}
+void Player::PlayerRegenCan(int x)
+{
+	playerStat.Can += x;
+	if (playerStat.Can >= playerStat.MaxCan)
+		playerStat.Can = playerStat.MaxCan;
+}
+void Player::AddPlayerRegenCan()
+{
+	playerStat.RegenCan++;
+}
+void Player::LevelAdd()
+{
+	if (LevelAtlayabilirMi())
+	{
+		level++;
+		AddMaxCan();
+		AddCan();
+		AddPlayerRegenCan();
+	}
+}
+int Player::GetPlayerRegenCan()
+{
+	return playerStat.RegenCan;
+}
+void Player::SetPlayerRegenCan(int x)
+{
+	playerStat.RegenCan = x;
+}
+int Player::GetLevel()
+{
+	return level;
+}
+void Player::AddExp(int _xp)
+{
+	xp += _xp;
+}
+int Player::GetExp()
+{return xp;}
+void Player::GiveXp(int _xp) {
+	xp += _xp;
+	if (level < 19)
+	{
+		if (xp >= LevelExpTablosu[level + 1]) {
+			do
+			{
+				xp -= LevelExpTablosu[level];
+				LevelAdd();
+				if (xp <= LevelExpTablosu[level])break;
+			} while (true);
+		}
+	}
+}
+MenzilliDusman::MenzilliDusman() {
+	SetMaxCan(50);
+	SetCan(50);
+	SetHasar(3);
+	SetGorusMesafesi(30);
+	SetSaldiriMenzili(5);
+	SetPlayerGiveExp(20);
+}
 void MenzilliDusman::PlayerHizala(int playerY, int playerX, InputKonumlari& inputKarari) {
 	int mesafeX = playerX - GetKonumX();
 	int mesafeY = playerY - GetKonumY();
@@ -246,6 +367,15 @@ void MenzilliDusman::DusmanKararMerkezi(int playerY, int playerX, InputKonumlari
 	else if (GetPlayeriGorduMu())	PlayereGit(playerY, playerX, inputKarari);
 	else	RandomDusmanHaraketYonetici(inputKarari);
 }
+SavasciDusman::SavasciDusman() {
+	SetMaxCan(150);
+	SetCan(150);
+	SetHasar(5);
+	SetGorusMesafesi(40);
+	SetSaldiriMenzili(1);
+	SetPlayerGiveExp(25);
+	SetRegenCan(3);
+}
 int SavasciDusman::DusmanSaldirisi()
 {
 	return GetHasar();
@@ -259,6 +389,14 @@ void SavasciDusman::DusmanKararMerkezi(int playerY, int playerX, InputKonumlari&
 	if (GetSaldiriMenzilindeMi())	saldirabilirMi = true;
 	else if (GetPlayeriGorduMu())	PlayereGit(playerY, playerX, inputKarari);
 	else	RandomDusmanHaraketYonetici(inputKarari);
+}
+StandartDusman::StandartDusman() {
+	SetMaxCan(100);
+	SetCan(100);
+	SetHasar(4);
+	SetGorusMesafesi(10);
+	SetSaldiriMenzili(1);
+	SetPlayerGiveExp(10);
 }
 int StandartDusman::DusmanSaldirisi()
 {return GetHasar();}

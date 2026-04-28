@@ -62,32 +62,14 @@ public:
 	void SetSaldiriMenzilindeMi(bool _saldiriMenzilindeMi);
 	bool GetSaldiriMenzilindeMi();
 	bool GetPlayeriGorduMu();
-	void SetPlayerGiveExp(int _givExp)
-	{playerGiveExp = _givExp;}
-	void SetRegenCan(int x)
-	{
-		Stat.RegenCan = x;
-	}
-	int GetRegenCan()
-	{
-		return Stat.RegenCan;
-	}
-	int GetGiveExp()
-	{
-		return playerGiveExp;
-	}
+	void SetPlayerGiveExp(int _givExp);
+	void SetRegenCan(int x);
+	int GetRegenCan();
+	int GetGiveExp();
 };
 class MenzilliDusman : public Dusman{
 public:
-	MenzilliDusman(){
-		SetMaxCan(50);
-		SetCan(50);
-		SetHasar(3);
-		SetGorusMesafesi(30);
-		SetSaldiriMenzili(5);
-		SetPlayerGiveExp(20);
-		SetRegenCan(2);
-	}
+	MenzilliDusman();
 	void PlayerHizala(int playerY, int playerX, InputKonumlari& inputKarari);
 	int DusmanSaldirisi()override;
 	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi)override;
@@ -95,29 +77,14 @@ public:
 class SavasciDusman : public Dusman{
 private:
 public:
-	SavasciDusman()	{
-		SetMaxCan(150);
-		SetCan(150);
-		SetHasar(5);
-		SetGorusMesafesi(40);
-		SetSaldiriMenzili(1);
-		SetPlayerGiveExp(25);
-		SetRegenCan(3);
-	}
+	SavasciDusman();
 	int DusmanSaldirisi()override;
 	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) override;
 };
 class StandartDusman : public Dusman{
 private:
 public:
-	StandartDusman(){
-		SetMaxCan(100);
-		SetCan(100);
-		SetHasar(4);
-		SetGorusMesafesi(10);
-		SetSaldiriMenzili(1);
-		SetPlayerGiveExp(10);
-	}
+	StandartDusman();
 	int DusmanSaldirisi()override;
 	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) override;
 };
@@ -129,6 +96,7 @@ private:
 	int nextLevelExp;
 	int LevelExpTablosu[20];
 public:
+	Player();
 	int GetPlayerCan();
 	int GetPLayerMaxCan();
 	int GetPlayerHasar();
@@ -139,99 +107,20 @@ public:
 	void SetPLayerSatas(int _can,int _maxCan,int _hasar);
 	void PlayerHasarAl(int _hasar);
 	void PlayerSaldir(Dusman* dusman);
-	void LevelTablosuDoldur(){
-		LevelExpTablosu[0] = 0;
-		LevelExpTablosu[1] = 10;
-		LevelExpTablosu[2] = LevelExpTablosu[1] * 2;
-		LevelExpTablosu[3] = LevelExpTablosu[2] * 2;
-		LevelExpTablosu[4] = LevelExpTablosu[3] * 2;
-		LevelExpTablosu[5] = LevelExpTablosu[4] * 2;
-		LevelExpTablosu[6] = LevelExpTablosu[5] * 2;
-		LevelExpTablosu[7] = LevelExpTablosu[6] * 2;
-		LevelExpTablosu[8] = LevelExpTablosu[7] * 2;
-		LevelExpTablosu[9] = LevelExpTablosu[8] * 2;
-		LevelExpTablosu[10] = LevelExpTablosu[9] * 2;
-		LevelExpTablosu[11] = LevelExpTablosu[10] * 2;
-		LevelExpTablosu[12] = LevelExpTablosu[11] * 2;
-		LevelExpTablosu[13] = LevelExpTablosu[12] * 2;
-		LevelExpTablosu[14] = LevelExpTablosu[13] * 2;
-		LevelExpTablosu[15] = LevelExpTablosu[14] * 2;
-		LevelExpTablosu[16] = LevelExpTablosu[15] * 2;
-		LevelExpTablosu[17] = LevelExpTablosu[16] * 2;
-		LevelExpTablosu[18] = LevelExpTablosu[17] * 2;
-		LevelExpTablosu[19] = LevelExpTablosu[18] * 2;
-	}
-	int GetLevelTablosuEleman(int i)
-	{
-		return LevelExpTablosu[i];
-	}
-	bool LevelAtlayabilirMi()
-	{
-		if (level < 20)
-			return true;
-		return false;
-	}
-	void AddMaxCan()
-	{
-		playerStat.MaxCan += 10;
-	}
-	void AddCan()
-	{
-		playerStat.Can += 10;
-	}
-	void PlayerRegenCan(int x)
-	{
-		playerStat.Can += x;
-		if (playerStat.Can >= playerStat.MaxCan)
-			playerStat.Can = playerStat.MaxCan;
-	}
-	void AddPlayerRegenCan()
-	{
-		playerStat.RegenCan++;
-	}
-	void LevelAdd()
-	{ 
-		if (LevelAtlayabilirMi())
-		{
-			level++;
-			AddMaxCan();
-			AddCan();
-			AddPlayerRegenCan();
-		}
-	}
-
-	int GetPlayerRegenCan()
-	{
-		return playerStat.RegenCan;
-	}
-	void SetPlayerRegenCan(int x)
-	{
-		playerStat.RegenCan = x;
-	}
-	int GetLevel()
-	{return level;}
-	void AddExp(int _xp)
-	{xp += _xp;}
-	int GetExp()
-	{
-		return xp;
-	}
-	void GiveXp(int _xp) {
-		xp += _xp;
-		if (LevelAtlayabilirMi())
-		{
-			if (xp >= LevelExpTablosu[level + 1]) {
-				do
-				{
-					xp -= LevelExpTablosu[level];
-					LevelAdd();
-					if (xp <= LevelExpTablosu[level])
-						break;
-					else break;
-				} while (true);
-			}
-		}
-	}
+	void LevelTablosuDoldur();
+	int GetLevelTablosuEleman(int i);
+	bool LevelAtlayabilirMi();
+	void AddMaxCan();
+	void AddCan();
+	void PlayerRegenCan(int x);
+	void AddPlayerRegenCan();
+	void LevelAdd();
+	int GetPlayerRegenCan();
+	void SetPlayerRegenCan(int x);
+	int GetLevel();
+	void AddExp(int _xp);
+	int GetExp();
+	void GiveXp(int _xp);
 };
 struct Varliklar {
 	Player player;

@@ -52,8 +52,7 @@ void ConsolEkraninaEnvanterAlaniEkle(EkranVerisi& ekranVerisi) {
 		ekranVerisi.consolGoruntu[envanterBaslangicKonumuY + 6][envanterBaslangicKonumuX + i] = kose;
 	}
 	for (int y = 0; y < envanterYukseklik; y++) {
-		for (int x = 0; x < envanterGesnislik; x++)
-		{
+		for (int x = 0; x < envanterGesnislik; x++)	{
 			if (x % envanterSlotYukseklik == 0)ekranVerisi.consolGoruntu[envanterBaslangicKonumuY + 1 + y][envanterBaslangicKonumuX + x] = kose;
 		}
 	}
@@ -84,49 +83,49 @@ void ConsolEkraninaAciklamaKismiEkle(EkranVerisi& ekranVerisi) {
 	const int AciklamaBaslangicKonumY = 37;
 	const int AciklamaBaslangicKonumX = 55;
 	const int aciklamaYukseklik = 4;
-	for (int y = 0; y < aciklamaYukseklik; y++)
-	{
+	for (int y = 0; y < aciklamaYukseklik; y++)	{
 		for (int x = 0; x < AciklamaStringSize; x++)ekranVerisi.consolGoruntu[AciklamaBaslangicKonumY + y][AciklamaBaslangicKonumX + x] = AciklamaString[x];
 	}
+}
+void CanTxtiniStatTexineEkle(EkranVerisi& ekranVerisi, Player& player,int canStetBaslangicY,int playerSatetBaslangicX){
+	string pLayerCanString = "Can: ";
+	pLayerCanString += to_string(player.GetPLayerMaxCan());
+	pLayerCanString += '/';
+	pLayerCanString += to_string(player.GetPlayerCan());
+	int playerCanStringSize = pLayerCanString.length();
+	for (int x = 0; x < playerCanStringSize; x++)
+		ekranVerisi.consolGoruntu[canStetBaslangicY + 1][playerSatetBaslangicX + x] = pLayerCanString[x];
+}
+void LevelTxtiniStatTexineEkle(EkranVerisi&ekranVerisi,Player&player,int levelStateBaslangicY,int levelStateBaslangicX){
+	string playerLevelString = "Level: ";
+	playerLevelString += to_string(player.GetLevel() + 1);
+	int playerLevelStringSize = playerLevelString.length();
+	for (int x = 0; x < playerLevelStringSize; x++)
+		ekranVerisi.consolGoruntu[levelStateBaslangicY + 1][levelStateBaslangicX + x] = playerLevelString[x];
+}
+void XpTxtiniStateTxtineEkle(EkranVerisi&ekranVerisi,Player&player,int xpBaslangicY,int xpBaslangicX){
+	string playerExpString = "Exp: ";
+	playerExpString += to_string(player.GetExp());
+	playerExpString += '/';
+	playerExpString += to_string(player.GetLevelTablosuEleman(player.GetLevel() + 1));
+	int playerExpStringSize = playerExpString.length();
+	for (int x = 0; x < playerExpStringSize; x++)
+		ekranVerisi.consolGoruntu[xpBaslangicY + 1][xpBaslangicX + x] = playerExpString[x];
 }
 void ConsolEkraninaPlayerStateEkle(EkranVerisi& ekranVerisi,Player& player) {
 	const int playerSatetBaslangicY = 33;
 	const int playerSatetBaslangicX = 136;
 	const string playerstatBaslik = "Player Stat";
-	string playerStateleri = "Level:100/100";
-	string pLayerCanString = "Can: ";
-	string playerLevelString = "Level: ";
-	string playerExpString = "Exp: ";
-	playerLevelString += to_string(player.GetLevel() + 1);
-	int playerLevelStringSize = playerLevelString.length();
-	playerExpString += to_string(player.GetExp());
-	playerExpString += '/';
-	playerExpString += to_string(player.GetLevelTablosuEleman(player.GetLevel() + 1));
-	int playerExpStringSize = playerExpString.length();
-	pLayerCanString += to_string(player.GetPLayerMaxCan());
-	pLayerCanString += '/';
-	pLayerCanString += to_string(player.GetPlayerCan());
 	int playerStatBaslikSize = playerstatBaslik.length();
-	int playerStateleriSize = playerStateleri.length();
-	int playerCanStringSize = pLayerCanString.length();
 	const int playerStatYukseklik = 7;
 	for (int i = 0; i < playerStatBaslikSize; i++)	ekranVerisi.consolGoruntu[playerSatetBaslangicY][playerSatetBaslangicX + i] = playerstatBaslik[i];
 	for (int y = 0; y < playerStatYukseklik; y++) {
 		if (y == 1)
-		{
-			for (int x = 0; x < playerCanStringSize; x++)
-				ekranVerisi.consolGoruntu[playerSatetBaslangicY + 1 + y][playerSatetBaslangicX + x] = pLayerCanString[x];
-		}
+			CanTxtiniStatTexineEkle(ekranVerisi, player, playerSatetBaslangicY + y, playerSatetBaslangicX);
 		else if (y == 2)
-		{
-			for (int x = 0; x < playerLevelStringSize; x++)
-				ekranVerisi.consolGoruntu[playerSatetBaslangicY + 1 + y][playerSatetBaslangicX + x] = playerLevelString[x];
-		}
+			LevelTxtiniStatTexineEkle(ekranVerisi, player, playerSatetBaslangicY + y, playerSatetBaslangicX);
 		else if (y == 3)
-		{
-			for (int x = 0; x < playerExpStringSize; x++)
-				ekranVerisi.consolGoruntu[playerSatetBaslangicY + 1 +y][playerSatetBaslangicX + x] = playerExpString[x];
-		}
+			XpTxtiniStateTxtineEkle(ekranVerisi,player,playerSatetBaslangicY + y,playerSatetBaslangicX);
 	}
 }
 void ConsolEkraninaListeVeStatAyiracEkle(EkranVerisi& ekranVerisi) {
@@ -167,8 +166,7 @@ void ConsolAltUi(EkranVerisi& ekranVerisi,Player& player) {
 	ConsolEkraninaListeVeStatAyiracEkle(ekranVerisi);
 	ConsolEkraninaPlayerStateEkle(ekranVerisi,player);
 }
-void EkranaUiEkle(Varliklar& varliklar, EkranVerisi& ekranVerisi, int fps)
-{
+void EkranaUiEkle(Varliklar& varliklar, EkranVerisi& ekranVerisi, int fps){
 	ConsolUstUi(varliklar, ekranVerisi, fps);
 	ConsolAltUi(ekranVerisi,varliklar.player);
 }
