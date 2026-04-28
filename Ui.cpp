@@ -94,27 +94,38 @@ void ConsolEkraninaPlayerStateEkle(EkranVerisi& ekranVerisi,Player& player) {
 	const int playerSatetBaslangicX = 136;
 	const string playerstatBaslik = "Player Stat";
 	string playerStateleri = "Level:100/100";
-	string PLayerCanString = "Can: ";
-	PLayerCanString += to_string(player.GetPLayerMaxCan());
-	PLayerCanString += '/';
-	PLayerCanString += to_string(player.GetPlayerCan());
+	string pLayerCanString = "Can: ";
+	string playerLevelString = "Level: ";
+	string playerExpString = "Exp: ";
+	playerLevelString += to_string(player.GetLevel() + 1);
+	int playerLevelStringSize = playerLevelString.length();
+	playerExpString += to_string(player.GetExp());
+	playerExpString += '/';
+	playerExpString += to_string(player.GetLevelTablosuEleman(player.GetLevel() + 1));
+	int playerExpStringSize = playerExpString.length();
+	pLayerCanString += to_string(player.GetPLayerMaxCan());
+	pLayerCanString += '/';
+	pLayerCanString += to_string(player.GetPlayerCan());
 	int playerStatBaslikSize = playerstatBaslik.length();
 	int playerStateleriSize = playerStateleri.length();
-	int playerCanStringSize = PLayerCanString.length();
+	int playerCanStringSize = pLayerCanString.length();
 	const int playerStatYukseklik = 7;
 	for (int i = 0; i < playerStatBaslikSize; i++)	ekranVerisi.consolGoruntu[playerSatetBaslangicY][playerSatetBaslangicX + i] = playerstatBaslik[i];
 	for (int y = 0; y < playerStatYukseklik; y++) {
 		if (y == 1)
 		{
 			for (int x = 0; x < playerCanStringSize; x++)
-				ekranVerisi.consolGoruntu[playerSatetBaslangicY + 1 + y][playerSatetBaslangicX + x] = PLayerCanString[x];
+				ekranVerisi.consolGoruntu[playerSatetBaslangicY + 1 + y][playerSatetBaslangicX + x] = pLayerCanString[x];
 		}
-		else
+		else if (y == 2)
 		{
-			for (int x = 0; x < playerStateleriSize; x++)
-			{
-				ekranVerisi.consolGoruntu[playerSatetBaslangicY + 1 + y][playerSatetBaslangicX + x] = playerStateleri[x];
-			}
+			for (int x = 0; x < playerLevelStringSize; x++)
+				ekranVerisi.consolGoruntu[playerSatetBaslangicY + 1 + y][playerSatetBaslangicX + x] = playerLevelString[x];
+		}
+		else if (y == 3)
+		{
+			for (int x = 0; x < playerExpStringSize; x++)
+				ekranVerisi.consolGoruntu[playerSatetBaslangicY + 1 +y][playerSatetBaslangicX + x] = playerExpString[x];
 		}
 	}
 }

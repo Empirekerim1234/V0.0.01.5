@@ -62,29 +62,46 @@ void DusmanUpdate(Varliklar& varliklar,OyunHaritaVeri& oyunHaritaVerisi)/*sonras
 	YasayanDusmanlaricinKarar(varliklar,toplamHasar,oyunHaritaVerisi);
 	DusmanSaldiriKarari(sayac,varliklar.player,toplamHasar);
 }
+void PLayerDusmanOldurDuyse(Varliklar& varliklar,int index){
+	if (varliklar.dusmanListesi[index]->GetCan() <= 0)	{
+		varliklar.dusmanListesi[index]->SetYasiyorMu(false);
+		varliklar.player.GiveXp(varliklar.dusmanListesi[index]->GetGiveExp());
+	}
+}
+void PLayerSaldiracakDusmanKontrol(int playerX,int playerY,Varliklar& varliklar,int index)
+{
+	if (playerX == varliklar.dusmanListesi[index]->GetKonumX() && playerY == varliklar.dusmanListesi[index]->GetKonumY() + 1)
+		varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);
+	else if (playerX == varliklar.dusmanListesi[index]->GetKonumX() + 1 && playerY == varliklar.dusmanListesi[index]->GetKonumY())
+		varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);
+	else if (playerX == varliklar.dusmanListesi[index]->GetKonumX() && playerY == varliklar.dusmanListesi[index]->GetKonumY() - 1)
+		varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);
+	else if (playerX == varliklar.dusmanListesi[index]->GetKonumX() - 1 && playerY == varliklar.dusmanListesi[index]->GetKonumY())
+		varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);
+}
 void PLayerSaldiriKari(Varliklar& varliklar) {
 	int playerX = varliklar.player.GetKonumX();
 	int playerY = varliklar.player.GetKonumY();
 	for (int i = 0; i < varliklar.dusmanListesi.size(); i++) {
 		if (varliklar.dusmanListesi[i]->GetYasiyormu()) {
-			if (playerX == varliklar.dusmanListesi[i]->GetKonumX() && playerY == varliklar.dusmanListesi[i]->GetKonumY() + 1)
-				varliklar.player.PlayerSaldir(varliklar.dusmanListesi[i]);
-			else if (playerX == varliklar.dusmanListesi[i]->GetKonumX() + 1 && playerY == varliklar.dusmanListesi[i]->GetKonumY())
-				varliklar.player.PlayerSaldir(varliklar.dusmanListesi[i]);
-			else if (playerX == varliklar.dusmanListesi[i]->GetKonumX() && playerY == varliklar.dusmanListesi[i]->GetKonumY() - 1)
-				varliklar.player.PlayerSaldir(varliklar.dusmanListesi[i]);
-			else if (playerX == varliklar.dusmanListesi[i]->GetKonumX() - 1 && playerY == varliklar.dusmanListesi[i]->GetKonumY())
-				varliklar.player.PlayerSaldir(varliklar.dusmanListesi[i]);
-			if (varliklar.dusmanListesi[i]->GetCan() <= 0)
-				varliklar.dusmanListesi[i]->SetYasiyorMu(false);
+			PLayerSaldiracakDusmanKontrol(playerX,playerY,varliklar,i);
+			PLayerDusmanOldurDuyse(varliklar,i);
 		}
 	}
 }
 void PlayerUpdate(InputKonumlari&inputKarar, Varliklar& varliklar,OyunHaritaVeri& oyunHaritaVerisi){
+	static int sayac = 0;
 	if (inputKarar == SagaGit||inputKarar == SolaGit || inputKarar == YukariGit||inputKarar ==AsagiyaGit)
 		PlayerKonumGuncelleVeUygula(varliklar, inputKarar,oyunHaritaVerisi);
 	if (inputKarar == Saldir) 
 		PLayerSaldiriKari(varliklar);
+	if (sayac >= 480)
+	{
+		int regen = varliklar.player.GetPlayerRegenCan();
+		varliklar.player.PlayerRegenCan(regen);
+		sayac = 0;
+	}
+	else sayac++;
 }
 void Update(Varliklar& varliklar, OyunDurumlari& oyunDurum,OyunHaritaVeri& oyunHaritaVerisi) {
 	InputKonumlari inputKarar = InputYok;

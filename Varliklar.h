@@ -9,6 +9,7 @@ struct OyunTamKonumlar{
 struct BaseStat{
 	int MaxCan = 100;
 	int Can = 100;
+	int RegenCan = 1;
 	int Hasar = 5;
 };
 class HareketEdebilenler{
@@ -33,6 +34,7 @@ private:
 	int dusmanSayacSiniri, sayac = 0;
 	int gorusMesafesi = 1;
 	int saldiriMenzili;
+	int playerGiveExp;
 	bool playereYeterinceYakin = false;
 	bool saldirabilirMi = false;
 	bool playeriGorduMu = false;
@@ -60,6 +62,20 @@ public:
 	void SetSaldiriMenzilindeMi(bool _saldiriMenzilindeMi);
 	bool GetSaldiriMenzilindeMi();
 	bool GetPlayeriGorduMu();
+	void SetPlayerGiveExp(int _givExp)
+	{playerGiveExp = _givExp;}
+	void SetRegenCan(int x)
+	{
+		Stat.RegenCan = x;
+	}
+	int GetRegenCan()
+	{
+		return Stat.RegenCan;
+	}
+	int GetGiveExp()
+	{
+		return playerGiveExp;
+	}
 };
 class MenzilliDusman : public Dusman{
 public:
@@ -69,6 +85,8 @@ public:
 		SetHasar(3);
 		SetGorusMesafesi(30);
 		SetSaldiriMenzili(5);
+		SetPlayerGiveExp(20);
+		SetRegenCan(2);
 	}
 	void PlayerHizala(int playerY, int playerX, InputKonumlari& inputKarari);
 	int DusmanSaldirisi()override;
@@ -83,6 +101,8 @@ public:
 		SetHasar(5);
 		SetGorusMesafesi(40);
 		SetSaldiriMenzili(1);
+		SetPlayerGiveExp(25);
+		SetRegenCan(3);
 	}
 	int DusmanSaldirisi()override;
 	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) override;
@@ -96,6 +116,7 @@ public:
 		SetHasar(4);
 		SetGorusMesafesi(10);
 		SetSaldiriMenzili(1);
+		SetPlayerGiveExp(10);
 	}
 	int DusmanSaldirisi()override;
 	void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) override;
@@ -140,34 +161,75 @@ public:
 		LevelExpTablosu[18] = LevelExpTablosu[17] * 2;
 		LevelExpTablosu[19] = LevelExpTablosu[18] * 2;
 	}
+	int GetLevelTablosuEleman(int i)
+	{
+		return LevelExpTablosu[i];
+	}
 	bool LevelAtlayabilirMi()
 	{
 		if (level < 20)
 			return true;
 		return false;
 	}
+	void AddMaxCan()
+	{
+		playerStat.MaxCan += 10;
+	}
+	void AddCan()
+	{
+		playerStat.Can += 10;
+	}
+	void PlayerRegenCan(int x)
+	{
+		playerStat.Can += x;
+		if (playerStat.Can >= playerStat.MaxCan)
+			playerStat.Can = playerStat.MaxCan;
+	}
+	void AddPlayerRegenCan()
+	{
+		playerStat.RegenCan++;
+	}
 	void LevelAdd()
 	{ 
-		if (LevelAtlayabilirMi()) 
-			level++; 
+		if (LevelAtlayabilirMi())
+		{
+			level++;
+			AddMaxCan();
+			AddCan();
+			AddPlayerRegenCan();
+		}
+	}
+
+	int GetPlayerRegenCan()
+	{
+		return playerStat.RegenCan;
+	}
+	void SetPlayerRegenCan(int x)
+	{
+		playerStat.RegenCan = x;
 	}
 	int GetLevel()
 	{return level;}
 	void AddExp(int _xp)
 	{xp += _xp;}
-	void LevelYonetici(){
+	int GetExp()
+	{
+		return xp;
+	}
+	void GiveXp(int _xp) {
+		xp += _xp;
 		if (LevelAtlayabilirMi())
 		{
-			if (xp >= LevelExpTablosu[level+1]){
-			do
-			{
-
-				xp -= LevelExpTablosu[level];
-				LevelAdd();
-				if (xp <= LevelExpTablosu[level])
-					break;
-				else break;
-			} while (true);
+			if (xp >= LevelExpTablosu[level + 1]) {
+				do
+				{
+					xp -= LevelExpTablosu[level];
+					LevelAdd();
+					if (xp <= LevelExpTablosu[level])
+						break;
+					else break;
+				} while (true);
+			}
 		}
 	}
 };

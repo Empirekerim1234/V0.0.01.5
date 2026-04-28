@@ -6,4 +6,4 @@
 
 void HaritaniKoseleriniYerlestir(OyunHaritaVeri& oyunHaritaVerisi);
 void Spawner(Player& player, const int playerSpawnKonum[], const int dusmanSayisi, std::vector<Dusman>& dusmanListesi);
-void OyunOncesiAyar(Varliklar& varliklar, OyunHaritaVeri& oyunVerisi);
+void OyunOncesiDunyaAyar(Varliklar& varliklar, OyunHaritaVeri& oyunVerisi);

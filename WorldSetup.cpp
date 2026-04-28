@@ -43,7 +43,7 @@ void Spawner(Player& player, const int playerSpawnKonum[], const int dusmanSayis
 		dusmanListesi[i]->DusmanSayaciSiniriAyarla();
 	}
 }
-void OyunOncesiAyar(Varliklar& varliklar, OyunHaritaVeri& oyunVerisi) {
+void OyunOncesiDunyaAyar(Varliklar& varliklar, OyunHaritaVeri& oyunVerisi) {
 	const int playerSpawnKonum[2] = { oyunVerisi.yuksekliginOrtasi, oyunVerisi.genisliginOrtasi };
 	CinCoutHizlandir();
 	ImleciGorunurluk(false);

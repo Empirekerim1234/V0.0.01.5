@@ -25,7 +25,8 @@ int main() {
 	EkranVerisi ekranVerisi;
 	ekranVerisi.consolGoruntu = vector<vector<char>>(ekranVerisi.konsolEkraniBitisY, vector<char>(ekranVerisi.KonsolEkraniBitisX, ' '));
 
-	OyunOncesiAyar(varliklar, oyunHaritaVerisi);
+	OyunOncesiDunyaAyar(varliklar, oyunHaritaVerisi);
+	varliklar.player.LevelTablosuDoldur();
 	Oyun(varliklar, oyunHaritaVerisi, ekranVerisi);
 	for (int i = 0; i < varliklar.dusmanListesi.size(); i++){
 		if (varliklar.dusmanListesi[i] != NULL)
