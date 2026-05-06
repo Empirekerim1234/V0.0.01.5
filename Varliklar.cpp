@@ -54,7 +54,11 @@ void Dusman::RandomDusmanHaraketYonetici(InputKonumlari&inputKarar){
 	else if (karar == 3)inputKarar = SolaGit;
 	else if (karar == 4)inputKarar = SagaGit;
 }
-void Dusman::PlayereGit(int playerY, int playerX,InputKonumlari& inputKarari) {
+int Dusman::GetSayac(){return sayac;}
+void Dusman::SayacSifirla() { sayac = 0; }
+void Dusman::AddSayac() {sayac++;}
+int Dusman::GetDusmanSayaciSiniri() {return dusmanSayacSiniri;}
+void Dusman::PlayereGit(int playerY, int playerX, InputKonumlari& inputKarari) {
 	if (GetKonumY() > playerY) inputKarari = YukariGit;
 	else if (GetKonumY() < playerY) inputKarari = AsagiyaGit;
 	else if (GetKonumX() > playerX) inputKarari = SolaGit;
@@ -182,7 +186,7 @@ void Player::GiveXp(int _xp) {
 MenzilliDusman::MenzilliDusman() 
 {SetMaxCan(50);SetCan(50);SetHasar(3);SetGorusMesafesi(30);SetSaldiriMenzili(5);SetPlayerGiveExp(20);}
 void MenzilliDusman::PlayerHizala(int playerY, int playerX, InputKonumlari& inputKarari) {
-	int mesafeX = playerX - GetKonumX(),mesafeY = playerY - GetKonumY();
+	int mesafeX = playerX - GetKonumX(), mesafeY = playerY - GetKonumY();
 	if (mesafeX < 0)	mesafeX *= -1;
 	if (mesafeY < 0)	mesafeY *= -1;
 	if (mesafeX < mesafeY) {
@@ -199,17 +203,21 @@ void MenzilliDusman::PlayerHizala(int playerY, int playerX, InputKonumlari& inpu
 int MenzilliDusman::DusmanSaldirisi()
 {return GetHasar();}
 void MenzilliDusman::DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) {
-	int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
-	if (mesafe <= GetGorusMesafesi())SetGorusMesafesindeMi(true);
-	else SetGorusMesafesindeMi(false);
-	if (mesafe <= GetSaldiriMenzili())	SetSaldiriMenzilindeMi(true);
-	else SetSaldiriMenzilindeMi(false);
-	if (GetSaldiriMenzilindeMi()){
+	if (GetSayac() >= GetDusmanSayaciSiniri()){
+		int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
+		if (mesafe <= GetGorusMesafesi())SetGorusMesafesindeMi(true);
+		else SetGorusMesafesindeMi(false);
+		if (mesafe <= GetSaldiriMenzili())	SetSaldiriMenzilindeMi(true);
+		else SetSaldiriMenzilindeMi(false);
+		if (GetSaldiriMenzilindeMi()) {
 		if (playerY == GetKonumY() || playerX == GetKonumX()) saldirabilirMi = true;
 		else PlayerHizala(playerY, playerX, inputKarari);
+		}
+		else if (GetPlayeriGorduMu())	PlayereGit(playerY, playerX, inputKarari);
+		else	RandomDusmanHaraketYonetici(inputKarari);
+		SayacSifirla();
 	}
-	else if (GetPlayeriGorduMu())	PlayereGit(playerY, playerX, inputKarari);
-	else	RandomDusmanHaraketYonetici(inputKarari);
+	else AddSayac();
 }
 SavasciDusman::SavasciDusman() {
 	SetMaxCan(150);
@@ -223,26 +231,34 @@ SavasciDusman::SavasciDusman() {
 int SavasciDusman::DusmanSaldirisi()
 {return GetHasar();}
 void SavasciDusman::DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) {
-	int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
-	if (mesafe <= GetGorusMesafesi())	SetGorusMesafesindeMi(true);
-	else	SetGorusMesafesindeMi(false);
-	if (mesafe <= GetSaldiriMenzili())	SetSaldiriMenzilindeMi(true);
-	else	SetSaldiriMenzilindeMi(false);
-	if (GetSaldiriMenzilindeMi())	saldirabilirMi = true;
-	else if (GetPlayeriGorduMu())	PlayereGit(playerY, playerX, inputKarari);
-	else	RandomDusmanHaraketYonetici(inputKarari);
+	if (GetSayac() >= GetDusmanSayaciSiniri()) {
+		int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
+		if (mesafe <= GetGorusMesafesi())	SetGorusMesafesindeMi(true);
+		else	SetGorusMesafesindeMi(false);
+		if (mesafe <= GetSaldiriMenzili())	SetSaldiriMenzilindeMi(true);
+		else	SetSaldiriMenzilindeMi(false);
+		if (GetSaldiriMenzilindeMi())	saldirabilirMi = true;
+		else if (GetPlayeriGorduMu())	PlayereGit(playerY, playerX, inputKarari);
+		else	RandomDusmanHaraketYonetici(inputKarari);
+		SayacSifirla();
+	}
+	else AddSayac(); 
 }
 StandartDusman::StandartDusman()
 {SetMaxCan(100); SetCan(100); SetHasar(4); SetGorusMesafesi(10); SetSaldiriMenzili(1); SetPlayerGiveExp(10);}
 int StandartDusman::DusmanSaldirisi()
 {return GetHasar();}
 void StandartDusman::DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) {
-	int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
-	if (mesafe <= GetGorusMesafesi())	SetGorusMesafesindeMi(true);
-	else	SetGorusMesafesindeMi(false);
-	if (mesafe <= GetSaldiriMenzili())	SetSaldiriMenzilindeMi(true);
-	else	SetSaldiriMenzilindeMi(false);
-	if (GetSaldiriMenzilindeMi())	saldirabilirMi = true;
-	else if (GetPlayeriGorduMu())	PlayereGit(playerY, playerX, inputKarari);
-	else	RandomDusmanHaraketYonetici(inputKarari);
+	if (GetSayac() >= GetDusmanSayaciSiniri()) {
+		int mesafe = PlayerlaMesafeyiHesapla(playerY, playerX);
+		if (mesafe <= GetGorusMesafesi())	SetGorusMesafesindeMi(true);
+		else	SetGorusMesafesindeMi(false);
+		if (mesafe <= GetSaldiriMenzili())	SetSaldiriMenzilindeMi(true);
+		else	SetSaldiriMenzilindeMi(false);
+		if (GetSaldiriMenzilindeMi())	saldirabilirMi = true;
+		else if (GetPlayeriGorduMu())	PlayereGit(playerY, playerX, inputKarari);
+		else	RandomDusmanHaraketYonetici(inputKarari);
+		SayacSifirla();
+	}
+	else AddSayac();
 }

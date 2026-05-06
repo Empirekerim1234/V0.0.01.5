@@ -42,6 +42,10 @@ public:
 	virtual void DusmanKararMerkezi(int playerY, int playerX, InputKonumlari& inputKarari, bool& saldirabilirMi) = 0;
 	virtual int DusmanSaldirisi() = 0;
 	void DusmanSayaciSiniriAyarla();
+	int GetSayac();
+	void SayacSifirla();
+	void AddSayac();
+	int GetDusmanSayaciSiniri();
 	int PlayerlaMesafeyiHesapla(int playerY, int PlayerX);
 	void RandomDusmanHaraketYonetici(InputKonumlari& inputKarari);
 	void PlayereGit(int playerY, int playerX, InputKonumlari& inputKarari);

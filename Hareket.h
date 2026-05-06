@@ -4,18 +4,18 @@
 
 bool HucreGeceliMi(int hedefY, int hedefX, OyunHaritaVeri& oyunHaritaVerisi) {
 	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Duvar)return false;
-	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Agac)return false;
-	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Ev)return false;
-	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Orman)return false;
-	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Magra)return false;
-	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Arena)return false;
-	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Tuccar)return false;
+	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Agac)return false;
+	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Ev)return false;
+	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Orman)return false;
+	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Magra)return false;
+	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Arena)return false;
+	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Tuccar)return false;
 	return true;
 }
 bool KonumGecerliMi(int hedefY, int hedefX, HareketEdebilenler& hareketEdecekObje, Varliklar& tumVarliklar, OyunHaritaVeri& oyunHaritaVerisi) {
 	if (oyunHaritaVerisi.genislik <= hedefX || oyunHaritaVerisi.yukseklik <= hedefY)	return false;
-	if (hedefX < 0 || hedefY < 0) return false;
-	if (&hareketEdecekObje != &tumVarliklar.player)
+	else if (hedefX < 0 || hedefY < 0) return false;
+	else if (&hareketEdecekObje != &tumVarliklar.player)
 	{if (tumVarliklar.player.GetKonumY() == hedefY && tumVarliklar.player.GetKonumX() == hedefX)return false;}
 	for (int i = 0; i < tumVarliklar.dusmanListesi.size(); i++) {
 		if (tumVarliklar.dusmanListesi[i]->GetYasiyormu()) {

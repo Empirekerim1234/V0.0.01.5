@@ -14,8 +14,7 @@ void EkranaBas(const int y, const int x, const string& txt) {
 	cout << txt;
 }
 void oyunEkranaPlayerVeDusmanEkle(vector<vector<char>>& harita, Varliklar& varliklar) {
-	for (int i = 0; i < varliklar.dusmanListesi.size(); i++)
-	{
+	for (int i = 0; i < varliklar.dusmanListesi.size(); i++) {
 		if (varliklar.dusmanListesi[i]->GetYasiyormu())
 			harita[varliklar.dusmanListesi[i]->GetKonumY()][varliklar.dusmanListesi[i]->GetKonumX()] = varliklar.dusmanListesi[i]->GetSembol();
 	}
@@ -26,54 +25,53 @@ void ConsolEkraninaOyunEkraniEkle(Player& player, vector<vector<char>>& copyTamH
 	gHarita.harita = vector<vector<char>>(gHarita.yukseklik, vector<char>(gHarita.genislik, ' '));
 	int ekranSolUstX = KameraKonumAyarlaX(player, gHarita, oyunHaritaVerisi.genislik);
 	int ekranSolUstY = KameraKonumAyarlaY(player, gHarita, oyunHaritaVerisi.yukseklik);
-	for (int y = 0; y < gHarita.yukseklik; y++)
-	{
-		for (int x = 0; x < gHarita.genislik; x++)gHarita.harita[y][x] = copyTamHatira[ekranSolUstY + y][ekranSolUstX + x];
+	int yukseklik = gHarita.yukseklik, genislik = gHarita.genislik;
+	for (int y = 0; y < yukseklik; y++) {
+		for (int x = 0; x < genislik; x++)gHarita.harita[y][x] = copyTamHatira[ekranSolUstY + y][ekranSolUstX + x];
 	}
-	for (int y = 0; y < gHarita.yukseklik; y++)
+	for (int y = 0; y < yukseklik; y++)
 	{
-		for (int x = 0; x < gHarita.genislik; x++)
-			ekranVerisi.consolGoruntu[2 + y][1 + x] = gHarita.harita[y][x];
+		for (int x = 0; x < genislik; x++)ekranVerisi.consolGoruntu[2 + y][1 + x] = gHarita.harita[y][x];
 	}
 }
-void CharHaritaDuzenle(vector<vector<char>>&charTamHarita,OyunHaritaVeri& oyunHaritaVeri)
-{
-	int yukseklik = oyunHaritaVeri.yukseklik;
-	int genislik = oyunHaritaVeri.genislik;
-	for (int y = 0; y <yukseklik ; y++)
-	{
-		for (int x = 0; x < genislik; x++)
-		{
-			if (oyunHaritaVeri.tamHarita[y][x] == Duvar) charTamHarita[y][x] = '#';
-			else if (oyunHaritaVeri.tamHarita[y][x] == Agac) charTamHarita[y][x] = '€';
-			else if (oyunHaritaVeri.tamHarita[y][x] == Ev) charTamHarita[y][x] = 'E';
-			else if (oyunHaritaVeri.tamHarita[y][x] == Orman) charTamHarita[y][x] = 'O';
-			else if (oyunHaritaVeri.tamHarita[y][x] == Arena) charTamHarita[y][x] = 'A';
-			else if (oyunHaritaVeri.tamHarita[y][x] == Magra) charTamHarita[y][x] = 'M';
-			else if (oyunHaritaVeri.tamHarita[y][x] == Tuccar) charTamHarita[y][x] = 'T';
-
-			else if (oyunHaritaVeri.tamHarita[y][x] == UstKapi) charTamHarita[y][x] = 'v';
-			else if (oyunHaritaVeri.tamHarita[y][x] == AltKapi) charTamHarita[y][x] = '^';
-			else if (oyunHaritaVeri.tamHarita[y][x] == SolKapi) charTamHarita[y][x] = '>';
-			else if (oyunHaritaVeri.tamHarita[y][x] == SagKapi) charTamHarita[y][x] = '<';
+void CharHaritaDuzenle(vector<vector<char>>& charTamHarita, Player& player, OyunHaritaVeri& oyunHaritaVerisi) {
+	OyunGozukenHaritaVerisi gHarita;//154 30 //154/2=77
+	int ekranSolUstX = KameraKonumAyarlaX(player, gHarita, oyunHaritaVerisi.genislik);
+	int ekranSolUstY = KameraKonumAyarlaY(player, gHarita, oyunHaritaVerisi.yukseklik);
+	int ekranSagAltX = ekranSolUstX + gHarita.genislik;
+	int ekranSagAltY = ekranSolUstY + gHarita.yukseklik;
+	for (int y = ekranSolUstY; y < ekranSagAltY; y++) {
+		for (int x = ekranSolUstX; x < ekranSagAltX; x++) {
+				if (oyunHaritaVerisi.tamHarita[y][x] == Duvar) charTamHarita[y][x] = '#';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == Agac) charTamHarita[y][x] = '€';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == Ev) charTamHarita[y][x] = 'E';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == Orman) charTamHarita[y][x] = 'O';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == Arena) charTamHarita[y][x] = 'A';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == Magra) charTamHarita[y][x] = 'M';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == Tuccar) charTamHarita[y][x] = 'T';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == UstKapi) charTamHarita[y][x] = 'v';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == AltKapi) charTamHarita[y][x] = '^';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == SolKapi) charTamHarita[y][x] = '>';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == SagKapi) charTamHarita[y][x] = '<';
 		}
 	}
 }
 void ConsolOyunEkraniKismiEkle(OyunHaritaVeri& oyunHaritaVerisi, Varliklar& varliklar, EkranVerisi& ekranVerisi) {
-	vector<vector<char>>copyTamHatira(oyunHaritaVerisi.yukseklik,vector<char>(oyunHaritaVerisi.genislik,'.'));
-	CharHaritaDuzenle(copyTamHatira,oyunHaritaVerisi);
+	vector<vector<char>>copyTamHatira(oyunHaritaVerisi.yukseklik, vector<char>(oyunHaritaVerisi.genislik, '.'));
+	CharHaritaDuzenle(copyTamHatira,varliklar.player,oyunHaritaVerisi);
 	oyunEkranaPlayerVeDusmanEkle(copyTamHatira, varliklar);
 	ConsolEkraninaOyunEkraniEkle(varliklar.player, copyTamHatira, oyunHaritaVerisi, ekranVerisi);
 }
 void UpdateConsolEkran(Varliklar& varliklar, int fps, EkranVerisi& ekranVerisi, OyunHaritaVeri& oyunVerisi) {
 	ConsolOyunEkraniKismiEkle(oyunVerisi, varliklar, ekranVerisi);
-	EkranaUiEkle(varliklar,ekranVerisi,fps);
+	EkranaUiEkle(varliklar, ekranVerisi, fps);
 }
 void ConsolEkranRender(EkranVerisi& ekranVerisi) {
 	string consolGuruntuString = "";
 	gotoxy(0, 0);
-	for (int y = 0; y < ekranVerisi.konsolEkraniBitisY; y++) {
-		for (int x = 0; x < ekranVerisi.KonsolEkraniBitisX; x++) {
+	int maxY = ekranVerisi.konsolEkraniBitisY, maxX = ekranVerisi.KonsolEkraniBitisX;
+	for (int y = 0; y < maxY; y++) {
+		for (int x = 0; x < maxX; x++) {
 			consolGuruntuString += ekranVerisi.consolGoruntu[y][x];
 			ekranVerisi.consolGoruntu[y][x] = ' ';
 		}

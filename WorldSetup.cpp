@@ -7,20 +7,17 @@
 using namespace std;
 
 void HaritaniKoseleriniYerlestir(OyunHaritaVeri& oyunHaritaVerisi){
-	for (int y = 0; y < oyunHaritaVerisi.yukseklik; y++) 
+	int yukseklik = oyunHaritaVerisi.yukseklik, genislik = oyunHaritaVerisi.genislik;
+	for (int y = 0; y < yukseklik; y++) 
 	{oyunHaritaVerisi.tamHarita[y][0] = Duvar;oyunHaritaVerisi.tamHarita[y][oyunHaritaVerisi.genislik - 1] = Duvar;}
-	for (int x = 0; x < oyunHaritaVerisi.genislik; x++) 
+	for (int x = 0; x < genislik; x++) 
 	{oyunHaritaVerisi.tamHarita[0][x] = Duvar;oyunHaritaVerisi.tamHarita[oyunHaritaVerisi.yukseklik - 1][x] = Duvar;}
 }
 void HaritayaAgacYerlestir(OyunHaritaVeri& oyunHarita){//değiştirilecek
-	const int ormanGensilik = 150;
-	const int ormanGenislikOrta = ormanGensilik / 2;
-	const int ormanYukseklik = 150;
-	const int ormanYukseklikOrta = ormanYukseklik / 2;
-	const int ormanBaslangicX = oyunHarita.genisliginOrtasi - ormanGenislikOrta;
-	const int ormanBaslangicY = oyunHarita.yuksekliginOrtasi - ormanGenislikOrta;
-	const int ormanBitisX = ormanBaslangicX + ormanGensilik;
-	const int ormanBitisY = ormanBaslangicY + ormanYukseklik;
+	const int ormanGensilik = 150, ormanYukseklik = 150;
+	const int ormanGenislikOrta = ormanGensilik / 2,ormanYukseklikOrta = ormanYukseklik / 2;
+	const int ormanBaslangicX = oyunHarita.genisliginOrtasi - ormanGenislikOrta,ormanBaslangicY = oyunHarita.yuksekliginOrtasi - ormanGenislikOrta;
+	const int ormanBitisX = ormanBaslangicX + ormanGensilik,ormanBitisY = ormanBaslangicY + ormanYukseklik;
 	for (int y = 0; y < ormanYukseklik; y++){
 		for (int x = 0; x < ormanGensilik; x++)
 		{if (x % 10 == 0 && y % 2 == 0 || x % 4 == 0 && y % 5 == 0)	oyunHarita.tamHarita[ormanBaslangicY + y][ormanBaslangicX + x] = Agac;}
@@ -31,35 +28,30 @@ void Spawner(Player& player, const int playerSpawnKonum[], const int dusmanSayis
 	for (int i = 0; i < dusmanSayisi; i++){dusmanListesi[i]->SetKonum(1 + i, 50);dusmanListesi[i]->DusmanSayaciSiniriAyarla();}
 }
 void HaritayaEvYerlestir(OyunHaritaVeri& oyunHaritaVeri) {
-	int evKonumX = oyunHaritaVeri.genisliginOrtasi;
-	int evKonumY = 1;
+	int evKonumX = oyunHaritaVeri.genisliginOrtasi,evKonumY = 1;
 	oyunHaritaVeri.tamHarita[evKonumY][evKonumX] = Ev;
 	oyunHaritaVeri.tamHarita[evKonumY + 1][evKonumX] = AltKapi;
 }
 void HariyayaOrmanYerlestir(OyunHaritaVeri& oyunHaritaVeri) {
-	int ormanKonumX = 1;
-	int ormanKonumY = 1;
+	int ormanKonumX = 1,ormanKonumY = 1;
 	oyunHaritaVeri.tamHarita[ormanKonumY][ormanKonumX] = Orman;
 	oyunHaritaVeri.tamHarita[ormanKonumY + 1][ormanKonumX] = AltKapi;
 	oyunHaritaVeri.tamHarita[ormanKonumY][ormanKonumX + 1] = SagKapi;
 }
 void HaritayaArenaYerlestie(OyunHaritaVeri& oyunHaritaVeri) {
-	int arenaKonumX = 1;
-	int arenaKonumY = oyunHaritaVeri.yukseklik - 2;
+	int arenaKonumX = 1,arenaKonumY = oyunHaritaVeri.yukseklik - 2;
 	oyunHaritaVeri.tamHarita[arenaKonumY][arenaKonumX] = Arena;
 	oyunHaritaVeri.tamHarita[arenaKonumY - 1][arenaKonumX] = UstKapi;
 	oyunHaritaVeri.tamHarita[arenaKonumY][arenaKonumX + 1] = SagKapi;
 }
 void HaritayaMagraYerlestir(OyunHaritaVeri& oyunHaritaVeri) {
-	int arenaKonumX = oyunHaritaVeri.genislik - 2;
-	int arenaKonumY = oyunHaritaVeri.yukseklik - 2;
+	int arenaKonumX = oyunHaritaVeri.genislik - 2,arenaKonumY = oyunHaritaVeri.yukseklik - 2;
 	oyunHaritaVeri.tamHarita[arenaKonumY][arenaKonumX] = Magra;
 	oyunHaritaVeri.tamHarita[arenaKonumY - 1][arenaKonumX] = UstKapi;
 	oyunHaritaVeri.tamHarita[arenaKonumY][arenaKonumX - 1] = SolKapi;
 }
 void HaritayaTuccarYerlestir(OyunHaritaVeri& oyunHaritaVeri) {
-	int arenaKonumX = oyunHaritaVeri.genislik - 2;
-	int arenaKonumY = 1;
+	int arenaKonumX = oyunHaritaVeri.genislik - 2,arenaKonumY = 1;
 	oyunHaritaVeri.tamHarita[arenaKonumY][arenaKonumX] = Tuccar;
 	oyunHaritaVeri.tamHarita[arenaKonumY + 1][arenaKonumX] = AltKapi;
 	oyunHaritaVeri.tamHarita[arenaKonumY][arenaKonumX - 1] = SolKapi;
