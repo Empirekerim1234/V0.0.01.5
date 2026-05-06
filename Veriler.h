@@ -11,7 +11,7 @@ enum OyunDurumlari {
 };
 enum HucreTipi
 {
-	Bos, Duvar,Agac
+	Bos, Duvar,Agac,Ev,Orman,Arena,Magra,Tuccar,UstKapi,AltKapi,SolKapi,SagKapi
 };
 struct EkranVerisi
 {

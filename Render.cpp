@@ -45,7 +45,17 @@ void CharHaritaDuzenle(vector<vector<char>>&charTamHarita,OyunHaritaVeri& oyunHa
 		for (int x = 0; x < genislik; x++)
 		{
 			if (oyunHaritaVeri.tamHarita[y][x] == Duvar) charTamHarita[y][x] = '#';
-			if (oyunHaritaVeri.tamHarita[y][x] == Agac) charTamHarita[y][x] = '€';
+			else if (oyunHaritaVeri.tamHarita[y][x] == Agac) charTamHarita[y][x] = '€';
+			else if (oyunHaritaVeri.tamHarita[y][x] == Ev) charTamHarita[y][x] = 'E';
+			else if (oyunHaritaVeri.tamHarita[y][x] == Orman) charTamHarita[y][x] = 'O';
+			else if (oyunHaritaVeri.tamHarita[y][x] == Arena) charTamHarita[y][x] = 'A';
+			else if (oyunHaritaVeri.tamHarita[y][x] == Magra) charTamHarita[y][x] = 'M';
+			else if (oyunHaritaVeri.tamHarita[y][x] == Tuccar) charTamHarita[y][x] = 'T';
+
+			else if (oyunHaritaVeri.tamHarita[y][x] == UstKapi) charTamHarita[y][x] = 'v';
+			else if (oyunHaritaVeri.tamHarita[y][x] == AltKapi) charTamHarita[y][x] = '^';
+			else if (oyunHaritaVeri.tamHarita[y][x] == SolKapi) charTamHarita[y][x] = '>';
+			else if (oyunHaritaVeri.tamHarita[y][x] == SagKapi) charTamHarita[y][x] = '<';
 		}
 	}
 }

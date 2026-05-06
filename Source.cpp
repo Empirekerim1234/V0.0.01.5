@@ -26,9 +26,7 @@ int main() {
 
 	OyunOncesiDunyaAyar(varliklar, oyunHaritaVerisi);
 	Oyun(varliklar, oyunHaritaVerisi, ekranVerisi);
-	for (int i = 0; i < varliklar.dusmanListesi.size(); i++){
-		if (varliklar.dusmanListesi[i] != NULL)
-			delete varliklar.dusmanListesi[i];
-	}
+	for (int i = 0; i < varliklar.dusmanListesi.size(); i++)
+	{if (varliklar.dusmanListesi[i] != NULL)delete varliklar.dusmanListesi[i];}
 	return 0;
 }

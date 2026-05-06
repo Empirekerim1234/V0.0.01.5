@@ -25,14 +25,11 @@ void ConsolEkraninaFpsEkle(EkranVerisi& ekranVerisi, int fps) {
 	for (int i = 0; i < FpsStringSize; i++)	ekranVerisi.consolGoruntu[0][FpsBaslangic + i] = FpsString[i];
 }
 void ConsolEkranEklenecekOyunEkranAyiraci(EkranVerisi& ekranVerisi) {
-	const int genislik = 156;
-	const int yukseklik = 32;
-	const int ekranAyiraciBaslangicY = 2;
-	const int ekranAyiraciBaslangicX = 0;
+	const int genislik = 156,yukseklik = 32,ekranAyiraciBaslangicY = 2,ekranAyiraciBaslangicX = 0;
 	const char yanKose = 186, ustKose = '=', bosluk = ' ';
 	for (int i = 0; i < genislik; i++) {
-		ekranVerisi.consolGoruntu[1][i + ekranAyiraciBaslangicX] = ustKose;
-		ekranVerisi.consolGoruntu[yukseklik][i + ekranAyiraciBaslangicX] = ustKose;
+	ekranVerisi.consolGoruntu[1][i + ekranAyiraciBaslangicX] = ustKose;
+	ekranVerisi.consolGoruntu[yukseklik][i + ekranAyiraciBaslangicX] = ustKose;
 	}
 	for (int i = 0; i < yukseklik - 2; i++) {
 		ekranVerisi.consolGoruntu[i + ekranAyiraciBaslangicY][0] = yanKose;
@@ -83,9 +80,8 @@ void ConsolEkraninaAciklamaKismiEkle(EkranVerisi& ekranVerisi) {
 	const int AciklamaBaslangicKonumY = 37;
 	const int AciklamaBaslangicKonumX = 55;
 	const int aciklamaYukseklik = 4;
-	for (int y = 0; y < aciklamaYukseklik; y++)	{
-		for (int x = 0; x < AciklamaStringSize; x++)ekranVerisi.consolGoruntu[AciklamaBaslangicKonumY + y][AciklamaBaslangicKonumX + x] = AciklamaString[x];
-	}
+	for (int y = 0; y < aciklamaYukseklik; y++)	
+	{for (int x = 0; x < AciklamaStringSize; x++)ekranVerisi.consolGoruntu[AciklamaBaslangicKonumY + y][AciklamaBaslangicKonumX + x] = AciklamaString[x];}
 }
 void CanTxtiniStatTexineEkle(EkranVerisi& ekranVerisi, Player& player,int canStetBaslangicY,int playerSatetBaslangicX){
 	string pLayerCanString = "Can: ";
@@ -113,37 +109,29 @@ void XpTxtiniStateTxtineEkle(EkranVerisi&ekranVerisi,Player&player,int xpBaslang
 		ekranVerisi.consolGoruntu[xpBaslangicY + 1][xpBaslangicX + x] = playerExpString[x];
 }
 void ConsolEkraninaPlayerStateEkle(EkranVerisi& ekranVerisi,Player& player) {
-	const int playerSatetBaslangicY = 33;
-	const int playerSatetBaslangicX = 136;
+	const int playerSatetBaslangicY = 33,playerSatetBaslangicX = 136;
 	const string playerstatBaslik = "Player Stat";
 	int playerStatBaslikSize = playerstatBaslik.length();
 	const int playerStatYukseklik = 7;
 	for (int i = 0; i < playerStatBaslikSize; i++)	ekranVerisi.consolGoruntu[playerSatetBaslangicY][playerSatetBaslangicX + i] = playerstatBaslik[i];
 	for (int y = 0; y < playerStatYukseklik; y++) {
-		if (y == 1)
-			CanTxtiniStatTexineEkle(ekranVerisi, player, playerSatetBaslangicY + y, playerSatetBaslangicX);
-		else if (y == 2)
-			LevelTxtiniStatTexineEkle(ekranVerisi, player, playerSatetBaslangicY + y, playerSatetBaslangicX);
-		else if (y == 3)
-			XpTxtiniStateTxtineEkle(ekranVerisi,player,playerSatetBaslangicY + y,playerSatetBaslangicX);
+		if (y == 1)CanTxtiniStatTexineEkle(ekranVerisi, player, playerSatetBaslangicY + y, playerSatetBaslangicX);
+		else if (y == 2)LevelTxtiniStatTexineEkle(ekranVerisi, player, playerSatetBaslangicY + y, playerSatetBaslangicX);
+		else if (y == 3)XpTxtiniStateTxtineEkle(ekranVerisi,player,playerSatetBaslangicY + y,playerSatetBaslangicX);
 	}
 }
 void ConsolEkraninaListeVeStatAyiracEkle(EkranVerisi& ekranVerisi) {
-	const int ayiracBaslangicY = 33;
-	const int ayiracBaslangicX = 135;
+	const int ayiracBaslangicY = 33,ayiracBaslangicX = 135,ayiracYukseklik = 8;
 	const char karakter = 186;
-	const int ayiracYukseklik = 8;
+
 	for (int y = 0; y < ayiracYukseklik; y++)	ekranVerisi.consolGoruntu[ayiracBaslangicY + y][ayiracBaslangicX] = karakter;
 }
 void ConsolEkraninaGorevListesiEkle(EkranVerisi& ekranVerisi) {
 	string gorevListesi = ".Orenk Yapmalisin Gorev Metni";
 	string gorevListesiBaslik = "Gorev Listesi";
 	string gorevListesiSatirDahil;
-	int gorevListesiSize = gorevListesi.length();
-	int gorevListesiBaslikSize = gorevListesiBaslik.length();
-	const int gorevListesiBaslangicY = 33;
-	const int gorevListesiBaslangicX = 102;
-	const int gorevListesiYukseklik = 7;
+	int gorevListesiSize = gorevListesi.length(), gorevListesiBaslikSize = gorevListesiBaslik.length();
+	const int gorevListesiBaslangicY = 33,gorevListesiBaslangicX = 102,gorevListesiYukseklik = 7;
 	for (int i = 0; i < gorevListesiBaslikSize; i++)ekranVerisi.consolGoruntu[gorevListesiBaslangicY][gorevListesiBaslangicX + i] = gorevListesiBaslik[i];
 	for (int y = 0; y < gorevListesiYukseklik; y++) {
 		int satirIndex = y + 1;
@@ -168,5 +156,5 @@ void ConsolAltUi(EkranVerisi& ekranVerisi,Player& player) {
 }
 void EkranaUiEkle(Varliklar& varliklar, EkranVerisi& ekranVerisi, int fps){
 	ConsolUstUi(varliklar, ekranVerisi, fps);
-	ConsolAltUi(ekranVerisi,varliklar.player);
+	ConsolAltUi(ekranVerisi, varliklar.player);
 }

@@ -140,6 +140,8 @@
     <ClCompile Include="YardimciFonksiyonlar.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Etkilesim.h" />
+    <ClInclude Include="Hareket.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Kamera.h" />
     <ClInclude Include="Oyun.h" />

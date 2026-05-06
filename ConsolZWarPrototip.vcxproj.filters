@@ -43,6 +43,12 @@
     <Filter Include="Source Files\Ui">
       <UniqueIdentifier>{6ee91ed0-95e0-42db-8faf-f6d39b41a715}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Hareket">
+      <UniqueIdentifier>{9eed9b6a-a9e4-4136-be0e-e9f49bfb3aab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Etkilesim">
+      <UniqueIdentifier>{49c325a3-cc02-4888-a559-a63a9ba9d91c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -109,6 +115,12 @@
     </ClInclude>
     <ClInclude Include="Ui.h">
       <Filter>Source Files\Ui</Filter>
+    </ClInclude>
+    <ClInclude Include="Hareket.h">
+      <Filter>Source Files\Hareket</Filter>
+    </ClInclude>
+    <ClInclude Include="Etkilesim.h">
+      <Filter>Source Files\Etkilesim</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
