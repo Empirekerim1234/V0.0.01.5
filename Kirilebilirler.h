@@ -159,7 +159,7 @@ public:
 class KirilebilirAgacObjesi : public Kirilebilirler
 {
 public:
-	KirilebilirAgacObjesi(int y, int x)	{
+	KirilebilirAgacObjesi()	{
 		SetTur(KirilabilirAgac);
 		SetYenidenDogmaSuresi(500);
 		SetMaxCan(100);
@@ -170,7 +170,5 @@ public:
 		SetDurum(Saglam);
 		SetKaynakName("Odun");
 		SetKaynakAmount(RandomKaynakAmount());
-		SetKonumX(x);
-		SetKonumY(y);
 	}
 };

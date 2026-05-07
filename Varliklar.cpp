@@ -28,19 +28,14 @@ void Dusman::SetGorusMesafesindeMi(bool _gorusMesafesindeMi)
 {playeriGorduMu = _gorusMesafesindeMi;}
 void Dusman::SetSaldiriMenzilindeMi(bool _saldiriMenzilindeMi)
 {saldirabilirMi = _saldiriMenzilindeMi;}
-int Dusman::PlayerlaMesafeyiHesapla(int playerY, int playerX)
-{
-	int playereMesafeX;
-	int playerMesafeY;
-	int playerMesafeHesaplamaX;
-	int playerMesafeHespalamaY;
+int Dusman::PlayerlaMesafeyiHesapla(int playerY, int playerX){
+	int playereMesafeX,playerMesafeY;
+	int playerMesafeHesaplamaX,playerMesafeHespalamaY;
 	double playerMesafe;
 	playereMesafeX = playerX - GetKonumX();
 	playerMesafeY = playerY - GetKonumY();
-	if (playereMesafeX < 0)
-		playereMesafeX *= -1;
-	if (playerMesafeY < 0)
-		playerMesafeY *= -1;
+	if (playereMesafeX < 0)	playereMesafeX *= -1;
+	if (playerMesafeY < 0)	playerMesafeY *= -1;
 	playerMesafeHesaplamaX = playereMesafeX * playereMesafeX;
 	playerMesafeHespalamaY = playerMesafeY * playerMesafeY;
 	playerMesafe = playerMesafeHesaplamaX + playerMesafeHespalamaY;
@@ -153,10 +148,8 @@ void Player::AddMaxCan()
 {Player::playerStat.MaxCan += 10;}
 void Player::AddCan()
 {playerStat.Can += 10;}
-void Player::PlayerRegenCan(int x){
-	playerStat.Can += x;
-	if (playerStat.Can >= playerStat.MaxCan)playerStat.Can = playerStat.MaxCan;
-}
+void Player::PlayerRegenCan(int x)
+{playerStat.Can += x;if (playerStat.Can >= playerStat.MaxCan)playerStat.Can = playerStat.MaxCan;}
 void Player::AddPlayerRegenCan()
 {playerStat.RegenCan++;}
 void Player::LevelAdd()
@@ -185,9 +178,8 @@ void Player::GiveXp(int _xp) {
 }
 void Player::SetKirmaHasari(int x) { BaseKirmaHasar = x; }
 int Player::GetKirmaHasari() { return BaseKirmaHasar; }
-void Player::Kirma(Kirilebilirler& kirilabilen) {
-	kirilabilen.HasarAl(GetKirmaHasari());
-}
+void Player::Kirma(Kirilebilirler*& kirilabilen) 
+{kirilabilen->HasarAl(GetKirmaHasari());}
 MenzilliDusman::MenzilliDusman() 
 {SetMaxCan(50);SetCan(50);SetHasar(3);SetGorusMesafesi(30);SetSaldiriMenzili(5);SetPlayerGiveExp(20);}
 void MenzilliDusman::PlayerHizala(int playerY, int playerX, InputKonumlari& inputKarari) {

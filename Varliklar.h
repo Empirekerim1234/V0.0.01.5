@@ -129,7 +129,7 @@ public:
 	void GiveXp(int _xp);
 	void SetKirmaHasari(int x);
 	int GetKirmaHasari();
-	void Kirma(Kirilebilirler& kirilabilen);
+	void Kirma(Kirilebilirler*& kirilabilen);
 };
 struct Varliklar {
 	Player player;

@@ -1,89 +1,9 @@
-﻿  Kamera.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'Kamera.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'Kamera.cpp')
-  
-  Oyun.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'Oyun.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'Oyun.cpp')
-  
-  Render.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'Render.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'Render.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Render.cpp(44,78): warning C4305: '=': truncation from 'int' to '_Ty'
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Render.cpp(44,78): warning C4305:         with
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Render.cpp(44,78): warning C4305:         [
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Render.cpp(44,78): warning C4305:             _Ty=char
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Render.cpp(44,78): warning C4305:         ]
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Render.cpp(44,78): warning C4309: '=': truncation of constant value
-  Source.cpp
+﻿  Source.cpp
 C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4305: 'argument': truncation from 'int' to 'char'
   (compiling source file 'Source.cpp')
   
 C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4309: 'argument': truncation of constant value
   (compiling source file 'Source.cpp')
   
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Source.cpp(13,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Ui.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'Ui.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'Ui.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(10,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(17,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(24,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(29,23): warning C4309: 'initializing': truncation of constant value
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(58,27): warning C4309: 'initializing': truncation of constant value
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(79,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(91,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(98,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(107,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(114,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(125,24): warning C4309: 'initializing': truncation of constant value
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(133,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(133,71): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Ui.cpp(139,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Update.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'Update.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'Update.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Etkilesim.h(45,6): error C2084: function 'bool PLayerSaldiracakDusmanKontrol(int,int,Varliklar &,int)' already has a body
-  (compiling source file 'Update.cpp')
-      C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Etkilesim.h(25,6):
-      see previous definition of 'PLayerSaldiracakDusmanKontrol'
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Etkilesim.h(85,8): error C2264: 'PLayerSaldiracakDusmanKontrol': error in function definition or declaration; function not called
-  (compiling source file 'Update.cpp')
-  
-  Varliklar.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'Varliklar.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'Varliklar.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Varliklar.cpp(48,9): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-  WorldSetup.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'WorldSetup.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(167,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'WorldSetup.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\WorldSetup.cpp(30,3): warning C4353: nonstandard extension used: constant 0 as function expression.  Use '__noop' function intrinsic instead
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\WorldSetup.cpp(82,74): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
-  Generating Code...
+C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Source.cpp(14,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  ConsolZWarPrototip.vcxproj -> C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\x64\Debug\ConsolZWarPrototip.exe

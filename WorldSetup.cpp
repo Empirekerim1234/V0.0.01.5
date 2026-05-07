@@ -14,7 +14,7 @@ void HaritaniKoseleriniYerlestir(OyunHaritaVeri& oyunHaritaVerisi){
 	for (int x = 0; x < genislik; x++) 
 	{oyunHaritaVerisi.tamHarita[0][x] = Duvar;oyunHaritaVerisi.tamHarita[oyunHaritaVerisi.yukseklik - 1][x] = Duvar;}
 }
-void HaritayaAgacYerlestir(OyunHaritaVeri& oyunHarita){/*değiştirilecek*/
+void HaritayaAgacYerlestir(OyunHaritaVeri& oyunHarita,Varliklar& varliklar){/*değiştirilecek*/
 	const int ormanGensilik = 150, ormanYukseklik = 150;
 	const int ormanGenislikOrta = ormanGensilik / 2,ormanYukseklikOrta = ormanYukseklik / 2;
 	const int ormanBaslangicX = oyunHarita.genisliginOrtasi - ormanGenislikOrta,ormanBaslangicY = oyunHarita.yuksekliginOrtasi - ormanGenislikOrta;
@@ -27,7 +27,8 @@ void HaritayaAgacYerlestir(OyunHaritaVeri& oyunHarita){/*değiştirilecek*/
 		}
 	}*/
 	 oyunHarita.tamHarita[ormanBaslangicY + 70][ormanBaslangicX + 70] = Agac;
-	 KirilabilirAgac(ormanBaslangicY + 70,ormanBaslangicX + 70);
+	 varliklar.kirilabilenListesi[0]->SetKonumY(ormanBaslangicY + 70);
+	 varliklar.kirilabilenListesi[0]->SetKonumX(ormanBaslangicX + 70);
 }
 void Spawner(Player& player, const int playerSpawnKonum[], const int dusmanSayisi, vector<Dusman*> dusmanListesi) {
 	player.SetKonum(playerSpawnKonum);
@@ -78,6 +79,6 @@ void OyunOncesiDunyaAyar(Varliklar& varliklar, OyunHaritaVeri& oyunVerisi) {
 
 	HaritaniKoseleriniYerlestir(oyunVerisi);
 	HaritayaTasinmazlariYerlestir(oyunVerisi);
-	HaritayaAgacYerlestir(oyunVerisi);
+	HaritayaAgacYerlestir(oyunVerisi,varliklar);
 	Spawner(varliklar.player, playerSpawnKonum, varliklar.dusmanListesi.size(), varliklar.dusmanListesi);
 }

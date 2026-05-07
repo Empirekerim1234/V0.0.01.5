@@ -42,7 +42,7 @@ bool PLayerSaldiracakDusmanKontrol(int playerX, int playerY, Varliklar& varlikla
 	{varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);return true;}
 	return false;
 }
-bool PLayerSaldiracakDusmanKontrol(int playerX, int playerY, Varliklar& varliklar, int index) {
+bool PLayerKirilacakObjeKontrolEt(int playerX, int playerY, Varliklar& varliklar, int index) {
 	int kirilabilirX = varliklar.kirilabilenListesi[index]->GetKonumX(), kirilabilirY = varliklar.kirilabilenListesi[index]->GetKonumY();
 	if (playerX == kirilabilirX && playerY == kirilabilirY + 1)								//üst
 	{

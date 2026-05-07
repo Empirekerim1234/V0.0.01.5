@@ -6,6 +6,7 @@
 #include "YardimciFonksiyonlar.h"
 #include "Kamera.h"
 #include "Ui.h"
+#include "Kirilebilirler.h"
 
 using namespace std;
 
@@ -32,16 +33,17 @@ void ConsolEkraninaOyunEkraniEkle(Player& player, vector<vector<char>>& copyTamH
 	for (int y = 0; y < yukseklik; y++)
 	{for (int x = 0; x < genislik; x++)ekranVerisi.consolGoruntu[2 + y][1 + x] = gHarita.harita[y][x];}
 }
-void CharHaritaDuzenle(vector<vector<char>>& charTamHarita, Player& player, OyunHaritaVeri& oyunHaritaVerisi) {
+void CharHaritaDuzenle(vector<vector<char>>& charTamHarita, Varliklar& varliklar, OyunHaritaVeri& oyunHaritaVerisi) {
 	OyunGozukenHaritaVerisi gHarita;//154 30 //154/2=77
-	int ekranSolUstX = KameraKonumAyarlaX(player, gHarita, oyunHaritaVerisi.genislik);
-	int ekranSolUstY = KameraKonumAyarlaY(player, gHarita, oyunHaritaVerisi.yukseklik);
+	int ekranSolUstX = KameraKonumAyarlaX(varliklar.player, gHarita, oyunHaritaVerisi.genislik);
+	int ekranSolUstY = KameraKonumAyarlaY(varliklar.player, gHarita, oyunHaritaVerisi.yukseklik);
 	int ekranSagAltX = ekranSolUstX + gHarita.genislik;
 	int ekranSagAltY = ekranSolUstY + gHarita.yukseklik;
 	for (int y = ekranSolUstY; y < ekranSagAltY; y++) {
 		for (int x = ekranSolUstX; x < ekranSagAltX; x++) {
 				if (oyunHaritaVerisi.tamHarita[y][x] == Duvar) charTamHarita[y][x] = '#';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == Agac) charTamHarita[y][x] = '€';
+				else if (oyunHaritaVerisi.tamHarita[y][x] == Agac)
+					charTamHarita[y][x] = varliklar.kirilabilenListesi[0]->GetSembol();
 				else if (oyunHaritaVerisi.tamHarita[y][x] == Ev) charTamHarita[y][x] = 'E';
 				else if (oyunHaritaVerisi.tamHarita[y][x] == Orman) charTamHarita[y][x] = 'O';
 				else if (oyunHaritaVerisi.tamHarita[y][x] == Arena) charTamHarita[y][x] = 'A';
@@ -56,7 +58,7 @@ void CharHaritaDuzenle(vector<vector<char>>& charTamHarita, Player& player, Oyun
 }
 void ConsolOyunEkraniKismiEkle(OyunHaritaVeri& oyunHaritaVerisi, Varliklar& varliklar, EkranVerisi& ekranVerisi) {
 	vector<vector<char>>copyTamHatira(oyunHaritaVerisi.yukseklik, vector<char>(oyunHaritaVerisi.genislik, '.'));
-	CharHaritaDuzenle(copyTamHatira,varliklar.player,oyunHaritaVerisi);
+	CharHaritaDuzenle(copyTamHatira,varliklar,oyunHaritaVerisi);
 	oyunEkranaPlayerVeDusmanEkle(copyTamHatira, varliklar);
 	ConsolEkraninaOyunEkraniEkle(varliklar.player, copyTamHatira, oyunHaritaVerisi, ekranVerisi);
 }
