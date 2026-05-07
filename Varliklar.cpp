@@ -183,6 +183,11 @@ void Player::GiveXp(int _xp) {
 		}
 	}
 }
+void Player::SetKirmaHasari(int x) { BaseKirmaHasar = x; }
+int Player::GetKirmaHasari() { return BaseKirmaHasar; }
+void Player::Kirma(Kirilebilirler& kirilabilen) {
+	kirilabilen.HasarAl(GetKirmaHasari());
+}
 MenzilliDusman::MenzilliDusman() 
 {SetMaxCan(50);SetCan(50);SetHasar(3);SetGorusMesafesi(30);SetSaldiriMenzili(5);SetPlayerGiveExp(20);}
 void MenzilliDusman::PlayerHizala(int playerY, int playerX, InputKonumlari& inputKarari) {

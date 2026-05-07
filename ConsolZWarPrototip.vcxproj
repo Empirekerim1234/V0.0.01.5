@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Kamera.cpp" />
+    <ClCompile Include="Kirilebilirler.cpp" />
     <ClCompile Include="Oyun.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Hareket.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Kamera.h" />
+    <ClInclude Include="Kirilebilirler.h" />
     <ClInclude Include="Oyun.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="Ui.h" />

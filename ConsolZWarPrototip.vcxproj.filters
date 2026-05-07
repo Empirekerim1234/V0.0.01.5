@@ -49,6 +49,9 @@
     <Filter Include="Source Files\Etkilesim">
       <UniqueIdentifier>{49c325a3-cc02-4888-a559-a63a9ba9d91c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\KirilebilirObje">
+      <UniqueIdentifier>{b21730c0-2836-49b4-9fa5-d875230b3af7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -83,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="Ui.cpp">
       <Filter>Source Files\Ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Kirilebilirler.cpp">
+      <Filter>Source Files\KirilebilirObje</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="Etkilesim.h">
       <Filter>Source Files\Etkilesim</Filter>
+    </ClInclude>
+    <ClInclude Include="Kirilebilirler.h">
+      <Filter>Source Files\KirilebilirObje</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

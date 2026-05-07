@@ -3,6 +3,7 @@
 #include "Veriler.h"
 #include "Varliklar.h"
 #include "YardimciFonksiyonlar.h"
+#include "Kirilebilirler.h"
 
 using namespace std;
 
@@ -13,15 +14,20 @@ void HaritaniKoseleriniYerlestir(OyunHaritaVeri& oyunHaritaVerisi){
 	for (int x = 0; x < genislik; x++) 
 	{oyunHaritaVerisi.tamHarita[0][x] = Duvar;oyunHaritaVerisi.tamHarita[oyunHaritaVerisi.yukseklik - 1][x] = Duvar;}
 }
-void HaritayaAgacYerlestir(OyunHaritaVeri& oyunHarita){//değiştirilecek
+void HaritayaAgacYerlestir(OyunHaritaVeri& oyunHarita){/*değiştirilecek*/
 	const int ormanGensilik = 150, ormanYukseklik = 150;
 	const int ormanGenislikOrta = ormanGensilik / 2,ormanYukseklikOrta = ormanYukseklik / 2;
 	const int ormanBaslangicX = oyunHarita.genisliginOrtasi - ormanGenislikOrta,ormanBaslangicY = oyunHarita.yuksekliginOrtasi - ormanGenislikOrta;
 	const int ormanBitisX = ormanBaslangicX + ormanGensilik,ormanBitisY = ormanBaslangicY + ormanYukseklik;
-	for (int y = 0; y < ormanYukseklik; y++){
+	/*for (int y = 0; y < ormanYukseklik; y++){
 		for (int x = 0; x < ormanGensilik; x++)
-		{if (x % 10 == 0 && y % 2 == 0 || x % 4 == 0 && y % 5 == 0)	oyunHarita.tamHarita[ormanBaslangicY + y][ormanBaslangicX + x] = Agac;}
-	}
+		{
+			if (x % 10 == 0 && y % 2 == 0 || x % 4 == 0 && y % 5 == 0)	
+				oyunHarita.tamHarita[ormanBaslangicY + y][ormanBaslangicX + x] = Agac;
+		}
+	}*/
+	 oyunHarita.tamHarita[ormanBaslangicY + 70][ormanBaslangicX + 70] = Agac;
+	 KirilabilirAgac(ormanBaslangicY + 70,ormanBaslangicX + 70);
 }
 void Spawner(Player& player, const int playerSpawnKonum[], const int dusmanSayisi, vector<Dusman*> dusmanListesi) {
 	player.SetKonum(playerSpawnKonum);

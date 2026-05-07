@@ -1,6 +1,7 @@
 #pragma once
 #include "Veriler.h"
 #include <vector>
+#include "Kirilebilirler.h"
 
 struct OyunTamKonumlar{
 	const int minOyunEkraniSinirKonum[2] = { 1, 1 };
@@ -98,6 +99,7 @@ private:
 	int xp = 0;
 	int level = 0;
 	int nextLevelExp;
+	int BaseKirmaHasar = 5;
 	int LevelExpTablosu[20];
 public:
 	Player();
@@ -125,8 +127,12 @@ public:
 	void AddExp(int _xp);
 	int GetExp();
 	void GiveXp(int _xp);
+	void SetKirmaHasari(int x);
+	int GetKirmaHasari();
+	void Kirma(Kirilebilirler& kirilabilen);
 };
 struct Varliklar {
 	Player player;
 	std::vector<Dusman*> dusmanListesi;
+	std::vector<Kirilebilirler*> kirilabilenListesi;
 };

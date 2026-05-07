@@ -1,6 +1,8 @@
 #pragma once
 #include "Varliklar.h"
 #include "Hareket.h"
+#include "Kirilebilirler.h"
+
 
 void YasayanDusmanlaricinKarar(Varliklar& varliklar, int& toplamHasar, OyunHaritaVeri& oyunHaritaVerisi) {
 	int playerX = varliklar.player.GetKonumX(), playerY = varliklar.player.GetKonumY();
@@ -38,6 +40,42 @@ bool PLayerSaldiracakDusmanKontrol(int playerX, int playerY, Varliklar& varlikla
 	{varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);return true;}
 	else if (playerX == dusmanX - 1 && playerY == dusmanY + 1)						//sağ üst
 	{varliklar.player.PlayerSaldir(varliklar.dusmanListesi[index]);return true;}
+	return false;
+}
+bool PLayerSaldiracakDusmanKontrol(int playerX, int playerY, Varliklar& varliklar, int index) {
+	int kirilabilirX = varliklar.kirilabilenListesi[index]->GetKonumX(), kirilabilirY = varliklar.kirilabilenListesi[index]->GetKonumY();
+	if (playerX == kirilabilirX && playerY == kirilabilirY + 1)								//üst
+	{
+		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
+	}
+	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY + 1)						//sol üst
+	{
+		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
+	}
+	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY)							//sol
+	{
+		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
+	}
+	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY - 1)						//sol alt
+	{
+		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
+	}
+	else if (playerX == kirilabilirX && playerY == kirilabilirY - 1)							//alt
+	{
+		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
+	}
+	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY - 1)						//sağ alt
+	{
+		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
+	}
+	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY)							//sağ
+	{
+		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
+	}
+	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY + 1)						//sağ üst
+	{
+		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
+	}
 	return false;
 }
 void PLayerSaldiriKari(Varliklar& varliklar) {

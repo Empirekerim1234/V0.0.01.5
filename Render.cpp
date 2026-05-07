@@ -30,9 +30,7 @@ void ConsolEkraninaOyunEkraniEkle(Player& player, vector<vector<char>>& copyTamH
 		for (int x = 0; x < genislik; x++)gHarita.harita[y][x] = copyTamHatira[ekranSolUstY + y][ekranSolUstX + x];
 	}
 	for (int y = 0; y < yukseklik; y++)
-	{
-		for (int x = 0; x < genislik; x++)ekranVerisi.consolGoruntu[2 + y][1 + x] = gHarita.harita[y][x];
-	}
+	{for (int x = 0; x < genislik; x++)ekranVerisi.consolGoruntu[2 + y][1 + x] = gHarita.harita[y][x];}
 }
 void CharHaritaDuzenle(vector<vector<char>>& charTamHarita, Player& player, OyunHaritaVeri& oyunHaritaVerisi) {
 	OyunGozukenHaritaVerisi gHarita;//154 30 //154/2=77
