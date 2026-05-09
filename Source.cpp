@@ -24,7 +24,7 @@ int main() {
 	{varliklar.kirilabilenListesi.push_back(new KirilebilirAgacObjesi());}
 	OyunHaritaVeri oyunHaritaVerisi;
 	oyunHaritaVerisi.tamHarita = vector<vector<HucreTipi>>(oyunHaritaVerisi.yukseklik, vector<HucreTipi>(oyunHaritaVerisi.genislik, Bos));
-
+	oyunHaritaVerisi.kirilabilirHarita = vector<vector<Kirilebilirler*>>(oyunHaritaVerisi.yukseklik, vector<Kirilebilirler*>(oyunHaritaVerisi.genislik, nullptr));
 	EkranVerisi ekranVerisi;
 	ekranVerisi.consolGoruntu = vector<vector<char>>(ekranVerisi.konsolEkraniBitisY, vector<char>(ekranVerisi.KonsolEkraniBitisX, ' '));
 

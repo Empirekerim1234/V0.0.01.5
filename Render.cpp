@@ -39,8 +39,10 @@ void CharHaritaDuzenle(vector<vector<char>>& charTamHarita, Varliklar& varliklar
 	for (int y = ekranSolUstY; y < ekranSagAltY; y++) {
 		for (int x = ekranSolUstX; x < ekranSagAltX; x++) {
 			if (oyunHaritaVerisi.tamHarita[y][x] == Duvar) charTamHarita[y][x] = '#';
-			else if (oyunHaritaVerisi.tamHarita[y][x] == Agac)
-				charTamHarita[y][x] = varliklar.kirilabilenListesi[0]->GetSembol();
+			else if (oyunHaritaVerisi.tamHarita[y][x] == Agac){
+				if (oyunHaritaVerisi.kirilabilirHarita[y][x] != nullptr && oyunHaritaVerisi.kirilabilirHarita[y][x]->GetDurum()==Saglam)
+					charTamHarita[y][x] = oyunHaritaVerisi.kirilabilirHarita[y][x]->GetSembol();
+			}
 			else if (oyunHaritaVerisi.tamHarita[y][x] == Ev) charTamHarita[y][x] = 'E';
 			else if (oyunHaritaVerisi.tamHarita[y][x] == Orman) charTamHarita[y][x] = 'O';
 			else if (oyunHaritaVerisi.tamHarita[y][x] == Arena) charTamHarita[y][x] = 'A';

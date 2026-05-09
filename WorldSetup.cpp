@@ -28,6 +28,7 @@ void HaritayaAgacYerlestir(OyunHaritaVeri& oyunHarita,Varliklar& varliklar){/*de
 				oyunHarita.tamHarita[ormanBaslangicY + y][ormanBaslangicX + x] = Agac;
 				varliklar.kirilabilenListesi[index]->SetKonumY(ormanBaslangicY + y);
 				varliklar.kirilabilenListesi[index]->SetKonumX(ormanBaslangicX + x);
+				oyunHarita.kirilabilirHarita[ormanBaslangicY + y][ormanBaslangicX + x] = varliklar.kirilabilenListesi[index];
 				index++;
 			}
 		}

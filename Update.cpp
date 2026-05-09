@@ -21,7 +21,13 @@ void PlayerUpdate(InputKonumlari&inputKarar, Varliklar& varliklar,OyunHaritaVeri
 	if (inputKarar == Saldir) 
 	{PlayerSaldiriKari(varliklar); PlayerObjeyeVurmaKarari(varliklar);}
 	if (inputKarar == etkilesimeGec)
-	{PlayerDropTopla(varliklar);}
+	{
+		int playerX = varliklar.player.GetKonumX(), playerY = varliklar.player.GetKonumY();
+		if (oyunHaritaVerisi.kirilabilirHarita[playerY][playerX] != nullptr)
+		{
+			PlayerDropTopla(varliklar, oyunHaritaVerisi.kirilabilirHarita[playerY][playerX]);
+		}
+	}
 	if (sayac >= 480){
 		int regen = varliklar.player.GetPlayerRegenCan();
 		varliklar.player.PlayerRegenCan(regen);

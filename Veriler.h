@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
+class Kirilebilirler;
+
 enum InputKonumlari
 {
 	InputYok,OyunuDurdur,OyunuDevapEttir,YukariGit,AsagiyaGit,SolaGit,SagaGit,Saldir,etkilesimeGec
@@ -30,6 +32,7 @@ struct OyunGozukenHaritaVerisi
 };
 struct OyunHaritaVeri {
 	std::vector<std::vector<HucreTipi>> tamHarita;
+	std::vector<std::vector<Kirilebilirler*>> kirilabilirHarita;
 	const int genislik = 500;
 	const int yukseklik = 500;
 	const int genisliginOrtasi = genislik / 2;

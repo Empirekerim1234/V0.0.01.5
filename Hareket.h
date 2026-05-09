@@ -6,8 +6,14 @@ bool HucreGeceliMi(int hedefY, int hedefX, OyunHaritaVeri& oyunHaritaVerisi,Varl
 	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Duvar)return false;
 	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Agac)
 	{
-		if (varliklar.kirilabilenListesi[0]->GetDurum() == Saglam)
-			return false;
+		for (int i = 0; i < varliklar.kirilabilenListesi.size(); i++)
+		{
+			if (varliklar.kirilabilenListesi[i]->GetKonumX() == hedefX && varliklar.kirilabilenListesi[i]->GetKonumY() == hedefY)
+			{
+				if (varliklar.kirilabilenListesi[i]->GetDurum() == Saglam)
+					return false;
+			}
+		}
 	}
 	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Ev)return false;
 	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Orman)return false;

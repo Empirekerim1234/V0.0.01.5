@@ -1,18 +1,8 @@
-﻿  Source.cpp
+﻿  Update.cpp
 C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(117,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'Source.cpp')
+  (compiling source file 'Update.cpp')
   
 C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(117,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'Source.cpp')
+  (compiling source file 'Update.cpp')
   
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Source.cpp(14,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  WorldSetup.cpp
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(117,19): warning C4305: 'argument': truncation from 'int' to 'char'
-  (compiling source file 'WorldSetup.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\Kirilebilirler.h(117,19): warning C4309: 'argument': truncation of constant value
-  (compiling source file 'WorldSetup.cpp')
-  
-C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\WorldSetup.cpp(87,74): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
-  Generating Code...
   ConsolZWarPrototip.vcxproj -> C:\Users\kerim\Desktop\ConsolZwarPrototip\V0.0.01.2\x64\Debug\ConsolZWarPrototip.exe

@@ -74,10 +74,10 @@ void PlayerSaldiriKari(Varliklar&varliklar){
 		{if (PLayerSaldiracakDusmanKontrol(playerX, playerY, varliklar, i)) { PLayerDusmanOldurDuyse(varliklar, i); break; }}
 	}
 }
-void PlayerDropTopla(Varliklar& varliklar)
+void PlayerDropTopla(Varliklar& varliklar,Kirilebilirler* kirilabilri)
 {
-	varliklar.kirilabilenListesi[0]->SetSembol(varliklar.kirilabilenListesi[0]->GetKirikSembol());
-	varliklar.kirilabilenListesi[0]->SetDurum(Kirik);
+	kirilabilri->SetSembol(kirilabilri->GetKirikSembol());
+	kirilabilri->SetDurum(Kirik);
 }
 void PlayerObjeyeVurmaKarari(Varliklar& varliklar) {
 	int playerX = varliklar.player.GetKonumX(), playerY = varliklar.player.GetKonumY();
