@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HareketEdebilenler.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Kamera.cpp" />
     <ClCompile Include="Kirilebilirler.cpp" />
@@ -135,7 +136,9 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Ui.cpp" />
     <ClCompile Include="Update.cpp" />
+    <ClCompile Include="VarlikDusman.cpp" />
     <ClCompile Include="Varliklar.cpp" />
+    <ClCompile Include="VarlikPlayer.cpp" />
     <ClCompile Include="Veriler.cpp" />
     <ClCompile Include="WorldSetup.cpp" />
     <ClCompile Include="YardimciFonksiyonlar.cpp" />
@@ -143,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="Etkilesim.h" />
     <ClInclude Include="Hareket.h" />
+    <ClInclude Include="HareketEdebilenler.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Kamera.h" />
     <ClInclude Include="Kirilebilirler.h" />
@@ -150,7 +154,9 @@
     <ClInclude Include="Render.h" />
     <ClInclude Include="Ui.h" />
     <ClInclude Include="Update.h" />
+    <ClInclude Include="VarlikDusman.h" />
     <ClInclude Include="Varliklar.h" />
+    <ClInclude Include="VarlikPlayer.h" />
     <ClInclude Include="Veriler.h" />
     <ClInclude Include="WorldSetup.h" />
     <ClInclude Include="YardimciFonksiyonlar.h" />

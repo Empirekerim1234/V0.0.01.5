@@ -3,7 +3,7 @@
 
 enum InputKonumlari
 {
-	InputYok,OyunuDurdur,OyunuDevapEttir,YukariGit,AsagiyaGit,SolaGit,SagaGit,Saldir
+	InputYok,OyunuDurdur,OyunuDevapEttir,YukariGit,AsagiyaGit,SolaGit,SagaGit,Saldir,etkilesimeGec
 };
 
 enum OyunDurumlari {

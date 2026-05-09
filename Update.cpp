@@ -18,7 +18,10 @@ void PlayerUpdate(InputKonumlari&inputKarar, Varliklar& varliklar,OyunHaritaVeri
 	static int sayac = 0;
 	if (inputKarar == SagaGit||inputKarar == SolaGit || inputKarar == YukariGit||inputKarar ==AsagiyaGit)
 		PlayerKonumGuncelleVeUygula(varliklar, inputKarar,oyunHaritaVerisi);
-	if (inputKarar == Saldir) PLayerSaldiriKari(varliklar);
+	if (inputKarar == Saldir) 
+	{PlayerSaldiriKari(varliklar); PlayerObjeyeVurmaKarari(varliklar);}
+	if (inputKarar == etkilesimeGec)
+	{PlayerDropTopla(varliklar);}
 	if (sayac >= 480){
 		int regen = varliklar.player.GetPlayerRegenCan();
 		varliklar.player.PlayerRegenCan(regen);
@@ -26,10 +29,13 @@ void PlayerUpdate(InputKonumlari&inputKarar, Varliklar& varliklar,OyunHaritaVeri
 	}
 	else sayac++;
 }
+void KirilabilenUpdete(Varliklar& varliklar)
+{for (int i = 0; i <varliklar.kirilabilenListesi.size(); i++)varliklar.kirilabilenListesi[i]->YenidenDogmaKontrol();}
 void Update(Varliklar& varliklar, OyunDurumlari& oyunDurum,OyunHaritaVeri& oyunHaritaVerisi) {
 	InputKonumlari inputKarar = InputYok;
 	OyunDurumunaGoreInputOku(oyunDurum,inputKarar);
 	if (varliklar.player.GetPlayerCan() <= 0) oyunDurum = kapant;
 	if (oyunDurum == devamet) 
 	{PlayerUpdate(inputKarar, varliklar,oyunHaritaVerisi);DusmanUpdate(varliklar,oyunHaritaVerisi);/*sonrasında sınıfa al ve iki işi ayır*/}
+	KirilabilenUpdete(varliklar);
 }

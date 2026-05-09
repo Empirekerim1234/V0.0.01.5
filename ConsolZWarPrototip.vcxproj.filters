@@ -52,6 +52,12 @@
     <Filter Include="Source Files\KirilebilirObje">
       <UniqueIdentifier>{b21730c0-2836-49b4-9fa5-d875230b3af7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Varliklar\Player">
+      <UniqueIdentifier>{a33a16ca-3bf3-4e2b-bf06-2b52bd2d20d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Varliklar\Dusman">
+      <UniqueIdentifier>{d38a0362-9d78-42f0-a88b-b607a2db7da6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -89,6 +95,15 @@
     </ClCompile>
     <ClCompile Include="Kirilebilirler.cpp">
       <Filter>Source Files\KirilebilirObje</Filter>
+    </ClCompile>
+    <ClCompile Include="VarlikPlayer.cpp">
+      <Filter>Source Files\Varliklar\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="VarlikDusman.cpp">
+      <Filter>Source Files\Varliklar\Dusman</Filter>
+    </ClCompile>
+    <ClCompile Include="HareketEdebilenler.cpp">
+      <Filter>Source Files\Varliklar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +145,15 @@
     </ClInclude>
     <ClInclude Include="Kirilebilirler.h">
       <Filter>Source Files\KirilebilirObje</Filter>
+    </ClInclude>
+    <ClInclude Include="VarlikPlayer.h">
+      <Filter>Source Files\Varliklar\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="VarlikDusman.h">
+      <Filter>Source Files\Varliklar\Dusman</Filter>
+    </ClInclude>
+    <ClInclude Include="HareketEdebilenler.h">
+      <Filter>Source Files\Varliklar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,10 +10,8 @@
 
 using namespace std;
 
-void EkranaBas(const int y, const int x, const string& txt) {
-	gotoxy(y, x);
-	cout << txt;
-}
+void EkranaBas(const int y, const int x, const string& txt)
+{gotoxy(y, x); cout << txt;}
 void oyunEkranaPlayerVeDusmanEkle(vector<vector<char>>& harita, Varliklar& varliklar) {
 	for (int i = 0; i < varliklar.dusmanListesi.size(); i++) {
 		if (varliklar.dusmanListesi[i]->GetYasiyormu())
@@ -27,9 +25,8 @@ void ConsolEkraninaOyunEkraniEkle(Player& player, vector<vector<char>>& copyTamH
 	int ekranSolUstX = KameraKonumAyarlaX(player, gHarita, oyunHaritaVerisi.genislik);
 	int ekranSolUstY = KameraKonumAyarlaY(player, gHarita, oyunHaritaVerisi.yukseklik);
 	int yukseklik = gHarita.yukseklik, genislik = gHarita.genislik;
-	for (int y = 0; y < yukseklik; y++) {
-		for (int x = 0; x < genislik; x++)gHarita.harita[y][x] = copyTamHatira[ekranSolUstY + y][ekranSolUstX + x];
-	}
+	for (int y = 0; y < yukseklik; y++) 
+	{for (int x = 0; x < genislik; x++)gHarita.harita[y][x] = copyTamHatira[ekranSolUstY + y][ekranSolUstX + x];}
 	for (int y = 0; y < yukseklik; y++)
 	{for (int x = 0; x < genislik; x++)ekranVerisi.consolGoruntu[2 + y][1 + x] = gHarita.harita[y][x];}
 }
@@ -41,18 +38,18 @@ void CharHaritaDuzenle(vector<vector<char>>& charTamHarita, Varliklar& varliklar
 	int ekranSagAltY = ekranSolUstY + gHarita.yukseklik;
 	for (int y = ekranSolUstY; y < ekranSagAltY; y++) {
 		for (int x = ekranSolUstX; x < ekranSagAltX; x++) {
-				if (oyunHaritaVerisi.tamHarita[y][x] == Duvar) charTamHarita[y][x] = '#';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == Agac)
-					charTamHarita[y][x] = varliklar.kirilabilenListesi[0]->GetSembol();
-				else if (oyunHaritaVerisi.tamHarita[y][x] == Ev) charTamHarita[y][x] = 'E';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == Orman) charTamHarita[y][x] = 'O';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == Arena) charTamHarita[y][x] = 'A';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == Magra) charTamHarita[y][x] = 'M';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == Tuccar) charTamHarita[y][x] = 'T';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == UstKapi) charTamHarita[y][x] = 'v';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == AltKapi) charTamHarita[y][x] = '^';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == SolKapi) charTamHarita[y][x] = '>';
-				else if (oyunHaritaVerisi.tamHarita[y][x] == SagKapi) charTamHarita[y][x] = '<';
+			if (oyunHaritaVerisi.tamHarita[y][x] == Duvar) charTamHarita[y][x] = '#';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == Agac)
+				charTamHarita[y][x] = varliklar.kirilabilenListesi[0]->GetSembol();
+			else if (oyunHaritaVerisi.tamHarita[y][x] == Ev) charTamHarita[y][x] = 'E';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == Orman) charTamHarita[y][x] = 'O';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == Arena) charTamHarita[y][x] = 'A';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == Magra) charTamHarita[y][x] = 'M';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == Tuccar) charTamHarita[y][x] = 'T';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == UstKapi) charTamHarita[y][x] = 'v';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == AltKapi) charTamHarita[y][x] = '^';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == SolKapi) charTamHarita[y][x] = '>';
+			else if (oyunHaritaVerisi.tamHarita[y][x] == SagKapi) charTamHarita[y][x] = '<';
 		}
 	}
 }

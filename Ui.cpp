@@ -80,8 +80,10 @@ void ConsolEkraninaAciklamaKismiEkle(EkranVerisi& ekranVerisi) {
 	const int AciklamaBaslangicKonumY = 37;
 	const int AciklamaBaslangicKonumX = 55;
 	const int aciklamaYukseklik = 4;
-	for (int y = 0; y < aciklamaYukseklik; y++)	
-	{for (int x = 0; x < AciklamaStringSize; x++)ekranVerisi.consolGoruntu[AciklamaBaslangicKonumY + y][AciklamaBaslangicKonumX + x] = AciklamaString[x];}
+	for (int y = 0; y < aciklamaYukseklik; y++)	{
+		for (int x = 0; x < AciklamaStringSize; x++)
+			ekranVerisi.consolGoruntu[AciklamaBaslangicKonumY + y][AciklamaBaslangicKonumX + x] = AciklamaString[x];
+	}
 }
 void CanTxtiniStatTexineEkle(EkranVerisi& ekranVerisi, Player& player,int canStetBaslangicY,int playerSatetBaslangicX){
 	string pLayerCanString = "Can: ";

@@ -2,9 +2,13 @@
 #include "Veriler.h"
 #include "Varliklar.h"
 
-bool HucreGeceliMi(int hedefY, int hedefX, OyunHaritaVeri& oyunHaritaVerisi) {
+bool HucreGeceliMi(int hedefY, int hedefX, OyunHaritaVeri& oyunHaritaVerisi,Varliklar&varliklar) {
 	if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Duvar)return false;
-	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Agac)return false;
+	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Agac)
+	{
+		if (varliklar.kirilabilenListesi[0]->GetDurum() == Saglam)
+			return false;
+	}
 	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Ev)return false;
 	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Orman)return false;
 	else if (oyunHaritaVerisi.tamHarita[hedefY][hedefX] == Magra)return false;
@@ -25,7 +29,7 @@ bool KonumGecerliMi(int hedefY, int hedefX, HareketEdebilenler& hareketEdecekObj
 			}
 		}
 	}
-	if (!HucreGeceliMi(hedefY, hedefX, oyunHaritaVerisi)) return false;
+	if (!HucreGeceliMi(hedefY, hedefX, oyunHaritaVerisi,tumVarliklar)) return false;
 	return true;
 }
 void HareketiDene(HareketEdebilenler& hareketEdecekObje, Varliklar& tumVarliklar, OyunHaritaVeri& oyunHaritaVerisi, InputKonumlari& inputKarar) {

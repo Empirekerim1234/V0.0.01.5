@@ -20,9 +20,8 @@ int main() {
 		else if (i%3==1)	varliklar.dusmanListesi.push_back(new StandartDusman());
 		else if (i%3==2)	varliklar.dusmanListesi.push_back(new SavasciDusman());
 	}
-	for (int i = 0; i > agacSayisi; i++) {
-		varliklar.kirilabilenListesi.push_back(new KirilebilirAgacObjesi());
-	}
+	for (int i = 0; i < agacSayisi; i++) 
+	{varliklar.kirilabilenListesi.push_back(new KirilebilirAgacObjesi());}
 	OyunHaritaVeri oyunHaritaVerisi;
 	oyunHaritaVerisi.tamHarita = vector<vector<HucreTipi>>(oyunHaritaVerisi.yukseklik, vector<HucreTipi>(oyunHaritaVerisi.genislik, Bos));
 

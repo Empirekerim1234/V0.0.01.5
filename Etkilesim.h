@@ -45,43 +45,44 @@ bool PLayerSaldiracakDusmanKontrol(int playerX, int playerY, Varliklar& varlikla
 bool PLayerKirilacakObjeKontrolEt(int playerX, int playerY, Varliklar& varliklar, int index) {
 	int kirilabilirX = varliklar.kirilabilenListesi[index]->GetKonumX(), kirilabilirY = varliklar.kirilabilenListesi[index]->GetKonumY();
 	if (playerX == kirilabilirX && playerY == kirilabilirY + 1)								//üst
-	{
-		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
-	}
-	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY + 1)						//sol üst
-	{
-		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
-	}
-	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY)							//sol
-	{
-		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
-	}
-	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY - 1)						//sol alt
-	{
-		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
-	}
-	else if (playerX == kirilabilirX && playerY == kirilabilirY - 1)							//alt
-	{
-		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
-	}
-	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY - 1)						//sağ alt
-	{
-		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
-	}
-	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY)							//sağ
-	{
-		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
-	}
-	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY + 1)						//sağ üst
-	{
-		varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;
-	}
+	{varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;}
+	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY + 1)					//sol üst
+	{varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;}
+	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY)						//sol
+	{varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;}
+	else if (playerX == kirilabilirX + 1 && playerY == kirilabilirY - 1)					//sol alt
+	{varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;}
+	else if (playerX == kirilabilirX && playerY == kirilabilirY - 1)						//alt
+	{varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;}
+	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY - 1)					//sağ alt
+	{varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;}
+	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY)						//sağ
+	{varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;}
+	else if (playerX == kirilabilirX - 1 && playerY == kirilabilirY + 1)					//sağ üst
+	{varliklar.player.Kirma(varliklar.kirilabilenListesi[index]); return true;}
 	return false;
 }
-void PLayerSaldiriKari(Varliklar& varliklar) {
+void PlayerKirilabilirObjeKirildiyse(Varliklar&varliklar,int index)
+{
+	if (varliklar.kirilabilenListesi[index]->KirildiMi())
+		varliklar.kirilabilenListesi[index]->Kir();
+}
+void PlayerSaldiriKari(Varliklar&varliklar){
 	int playerX = varliklar.player.GetKonumX(), playerY = varliklar.player.GetKonumY();
 	for (int i = 0; i < varliklar.dusmanListesi.size(); i++) {
 		if (varliklar.dusmanListesi[i]->GetYasiyormu())
-		{if (PLayerSaldiracakDusmanKontrol(playerX, playerY, varliklar, i)){PLayerDusmanOldurDuyse(varliklar, i);break;}}
+		{if (PLayerSaldiracakDusmanKontrol(playerX, playerY, varliklar, i)) { PLayerDusmanOldurDuyse(varliklar, i); break; }}
+	}
+}
+void PlayerDropTopla(Varliklar& varliklar)
+{
+	varliklar.kirilabilenListesi[0]->SetSembol(varliklar.kirilabilenListesi[0]->GetKirikSembol());
+	varliklar.kirilabilenListesi[0]->SetDurum(Kirik);
+}
+void PlayerObjeyeVurmaKarari(Varliklar& varliklar) {
+	int playerX = varliklar.player.GetKonumX(), playerY = varliklar.player.GetKonumY();
+	for (int i = 0; i < varliklar.kirilabilenListesi.size(); i++) {
+		if (varliklar.kirilabilenListesi[i]->GetDurum() == Saglam)
+		{if (PLayerKirilacakObjeKontrolEt(playerX, playerY, varliklar, i)){ PlayerKirilabilirObjeKirildiyse(varliklar, i);break;}}
 	}
 }
