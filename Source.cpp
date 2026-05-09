@@ -13,7 +13,7 @@ using namespace std;
 int main() {
 	srand(time(0));
 	const int dusmanSayisi = 30;
-	const int agacSayisi = 1;
+	const int agacSayisi = 2145;
 	Varliklar varliklar;
 	for (int i = 0; i < dusmanSayisi; i++){
 		if (i%3 == 0)		varliklar.dusmanListesi.push_back(new MenzilliDusman());

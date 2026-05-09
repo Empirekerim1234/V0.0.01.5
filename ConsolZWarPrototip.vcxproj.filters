@@ -58,6 +58,9 @@
     <Filter Include="Source Files\Varliklar\Dusman">
       <UniqueIdentifier>{d38a0362-9d78-42f0-a88b-b607a2db7da6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Varliklar\HareketEdebilenler">
+      <UniqueIdentifier>{86d5c465-53f4-4d3a-839b-f702c7402c1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -103,7 +106,7 @@
       <Filter>Source Files\Varliklar\Dusman</Filter>
     </ClCompile>
     <ClCompile Include="HareketEdebilenler.cpp">
-      <Filter>Source Files\Varliklar</Filter>
+      <Filter>Source Files\Varliklar\HareketEdebilenler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +156,7 @@
       <Filter>Source Files\Varliklar\Dusman</Filter>
     </ClInclude>
     <ClInclude Include="HareketEdebilenler.h">
-      <Filter>Source Files\Varliklar</Filter>
+      <Filter>Source Files\Varliklar\HareketEdebilenler</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

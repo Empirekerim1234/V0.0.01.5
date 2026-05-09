@@ -19,17 +19,21 @@ void HaritayaAgacYerlestir(OyunHaritaVeri& oyunHarita,Varliklar& varliklar){/*de
 	const int ormanGenislikOrta = ormanGensilik / 2,ormanYukseklikOrta = ormanYukseklik / 2;
 	const int ormanBaslangicX = oyunHarita.genisliginOrtasi - ormanGenislikOrta,ormanBaslangicY = oyunHarita.yuksekliginOrtasi - ormanGenislikOrta;
 	const int ormanBitisX = ormanBaslangicX + ormanGensilik,ormanBitisY = ormanBaslangicY + ormanYukseklik;
-	/*for (int y = 0; y < ormanYukseklik; y++){
+	int index = 0;
+	for (int y = 0; y < ormanYukseklik; y++){
 		for (int x = 0; x < ormanGensilik; x++)
 		{
-			if (x % 10 == 0 && y % 2 == 0 || x % 4 == 0 && y % 5 == 0)	
+			if (x % 10 == 0 && y % 2 == 0 || x % 4 == 0 && y % 5 == 0)
+			{
 				oyunHarita.tamHarita[ormanBaslangicY + y][ormanBaslangicX + x] = Agac;
+				varliklar.kirilabilenListesi[index]->SetKonumY(ormanBaslangicY + y);
+				varliklar.kirilabilenListesi[index]->SetKonumX(ormanBaslangicX + x);
+				index++;
+			}
 		}
-	}*/
-	 oyunHarita.tamHarita[ormanBaslangicY + 70][ormanBaslangicX + 70] = Agac;
-	 varliklar.kirilabilenListesi[0]->SetKonumY(ormanBaslangicY + 70);
-	 varliklar.kirilabilenListesi[0]->SetKonumX(ormanBaslangicX + 70);
+	}
 }
+//150*150 lik bir alan
 void Spawner(Player& player, const int playerSpawnKonum[], const int dusmanSayisi, vector<Dusman*> dusmanListesi) {
 	player.SetKonum(playerSpawnKonum);
 	for (int i = 0; i < dusmanSayisi; i++){dusmanListesi[i]->SetKonum(1 + i, 50);dusmanListesi[i]->DusmanSayaciSiniriAyarla();}
